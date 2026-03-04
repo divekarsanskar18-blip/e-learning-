@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzes - E-learning</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #002b4b, #3b0000);
+      color: white;
+    }
+    .header {
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: orange;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #111;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, background 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      background: #222;
+    }
+    .card h2 {
+      color: orange;
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: 14px;
+      color: #ddd;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 15px;
+      background: orange;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .card a:hover {
+      background: #ff6600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">E-learning - Quizzes</div>
+
+  <div class="container">
+    <div class="card">
+      <h2>C</h2>
+      <p>Test your knowledge of C programming</p>
+      <a href="quiz_c.html">Start Quiz</a>
+    </div>
+    <div class="card">
+      <h2>C++</h2>
+      <p>Object-Oriented Programming with C++</p>
+      <a href="quiz_cpp.html">Start Quiz</a>
+    </div>
+    <div class="card">
+      <h2>Java</h2>
+      <p>Core and advanced Java quizzes</p>
+      <a href="quiz_java.html">Start Quiz</a>
+    </div>
+    <div class="card">
+      <h2>HTML</h2>
+      <p>Build and test your web structure knowledge</p>
+      <a href="quiz_html.html">Start Quiz</a>
+    </div>
+    <div class="card">
+      <h2>Python</h2>
+      <p>Test your Python and AI programming skills</p>
+      <a href="quiz_python.html">Start Quiz</a>
+    </div>
+    <div class="card">
+      <h2>DSU</h2>
+      <p>Data Structures and Algorithms quiz</p>
+      <a href="quiz_dsu.html">Start Quiz</a>
+    </div>
+    <div class="card">
+      <h2>DBMS</h2>
+      <p>Database Management System quiz</p>
+      <a href="quiz_dbms.html">Start Quiz</a>
+    </div>
+  </div>
+
+</body>
+</html>

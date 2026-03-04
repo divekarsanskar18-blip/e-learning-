@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> OBJECT ORIENTED PROGRAMMING USING C++</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #000000, #660000);
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fefefe;
+    }
+      h2 {
+      color: #FF4500;
+    }
+    p {
+      line-height: 1.6;
+    }
+    h3 {
+      color :#00CED1;
+    }
+    p {
+      line-height: 1.6;
+    }
+
+
+    /* Tab Buttons */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      background: #222;
+      color: orange;
+      border: none;
+      padding: 12px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .tab-btn:hover {
+      background: orange;
+      color: black;
+    }
+
+    .tab-btn.active {
+      background: orange;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.6s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <h1>PROGRAMMING IN C++</h1>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openUnit(1)">Unit 1</button>
+    <button class="tab-btn" onclick="openUnit(2)">Unit 2</button>
+    <button class="tab-btn" onclick="openUnit(3)">Unit 3</button>
+    <button class="tab-btn" onclick="openUnit(4)">Unit 4</button>
+    <button class="tab-btn" onclick="openUnit(5)">Unit 5</button>
+  </div>
+
+  <!-- Notes -->
+  <div id="unit1" class="tab-content active">
+    <h1>Unit - I Principles of Object Oriented Programming</h1>
+    <h2>1.1 Procedure Oriented Programming (POP) verses Object Oriented Programming (OOP)</h2>
+    <h3>Procedure Oriented Programming (POP)</h3>
+    <p>Definition: Programming paradigm based on functions (procedures) that operate on data.
+       Focus: Functions/procedures are the main building blocks. Data is secondary.
+       Examples: C, Fortran, Pascal.</p>
+    <h3>Characteristics:</h3>
+
+<p>Programs are divided into functions.<br>
+   1. Data is often global and shared among functions.<br>
+   2. Functions operate on data directly.<br>
+   3. Top-down approach in program design.<br>
+   4. Less secure since global data can be accessed/modified by any function.<br>
+   5. Difficult to manage when program grows large.</p>
+   <h3>Object Oriented Programming (OOP)</h3>
+   <p>Definition: Programming paradigm based on objects that encapsulate both data and behavior.
+      Focus: Objects and classes. Data and functions are bundled together.
+      Examples: Java, C++, Python, C#, Ruby.</p>
+    <h3>Characteristics:</h3>
+    <p>Programs are divided into classes and objects.<br>
+      1.Data is hidden and accessed only through methods (Encapsulation).<br>
+      2.Supports Inheritance (code reusability).<br>
+      3.Supports Polymorphism (same function name can work in different ways).<br>
+      4.Bottom-up approach in program design.<br>
+      5.More secure since data is accessed through defined interfaces.</p>
+      <h3>Comparison Table :</h3>
+      <img src="C:\\Users\\hp\\Downloads\\Pictures\\Screenshots\\Screenshot 2025-08-19 111654.png" alt="description" width="600" height="300">
+    <h2>1.2 Features of Object Oriented Programming, Examples of Object Oriented languages, Applications of OOP</h2>
+    <h3>Features of Object-Oriented Programming:</h3>
+    <p>
+      1.Abstract Data types<br>
+      2.Machine Independent or Portable<br>
+      3.Mid-level programming language<br>
+      4.Structured programming language<br>
+      5.Rich Library<br>
+      6.Memory Management<br>
+      7.Quicker Compilation<br>
+      8.Pointers<br>
+      9.Recursion<br>
+      10.Extensible<br>
+      11.Object-Oriented<br>
+      12.Reusability<br>
+      13.Strongly typed language<br>
+      14.simple
+    </p>
+    <h3>1.Abstract Data types</h3>
+        <p>In C++, complex data types called Abstract Data Types (ADT) can be created using classes. 
+           Programmers can construct abstract data types through classes and structures in C++ to combine data with their associated functions within a single entity. 
+         It allows programmers to produce user-made data types that behave similarly to native program types while extending their capabilities.</p>
+    <h3>2.Machine Independent or Portable</h3>
+        <p>C++ is a portable language and programs made in it can be run on different machines.
+          The functionality of C++ extends from high-level elements, such as abstraction and OOP as well as low-level capabilities,
+         including direct memory access and pointers, which makes it a mid-level language.</p>
+    <h3>3.Mid-level programming language</h3>
+        <p>C++ includes both low-level programming and high-level language, so it is known as a mid-level and intermediate programming language.
+          it is used to develop system applications such as kernel, driver, etc.
+          In its middle-level status, C++ unites functionality from both high-level (abstraction and Object Oriented Programming along with standard libraries) and low-level (direct memory access and pointer functionality) language elements.
+        </p>
+    <h3>4.Structured programming language</h3>
+        <p>C++ is a structured programming language. In C++, we can divide the program into several parts using functions. The modular design structure makes it easier to create code that is easy to maintain and reuse. 
+            The addition of OOP features in C++ maintains the function-based programming structure from its parent language, C.
+        </p>
+    <h3>5.Rich Library</h3>
+        <p>C++ provides a lot of inbuilt functions that make the development fast. Following are the libraries used in C++ programming are:<br>
+         iostream<br>
+         cmath<br>
+         cstdlib<br>
+         fstream<br>
+         </p>
+
+  </div>
+  <div id="unit2" class="tab-content">
+    <h2>Unit - II Functions and Constructors</h2>
+    <p>This unit covers if-else, loops (for, while, do-while)...</p>
+     
+    
+  </div>
+
+  <div id="unit3" class="tab-content">
+    <h2>Unit - III Extending classes using Inheritance</h2>
+    <p>In this unit, we discuss functions (user-defined & library), arrays...</p>
+  </div>
+
+  <div id="unit4" class="tab-content">
+    <h2>Unit - IV Pointers and Polymorphism in C++</h2>
+    <p>Pointers are variables that store memory addresses...</p>
+  </div>
+
+  <div id="unit5" class="tab-content">
+    <h2>Unit - V File operations</h2>
+    <p>This unit covers structures, unions, and basic file handling...</p>
+  </div>
+
+  <script>
+    function openUnit(unitNumber) {
+      // Hide all contents
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(c => c.classList.remove('active'));
+
+      // Remove active from all buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      // Show selected content
+      document.getElementById("unit" + unitNumber).classList.add('active');
+      buttons[unitNumber - 1].classList.add('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSU Quiz - E-learning</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #000000, #003366);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: black;
+    }
+    .navbar .logo {
+      color: orange;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .quiz-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 150, 255, 0.6);
+    }
+    .quiz-container h2 {
+      text-align: center;
+      color: orange;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    .btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: orange;
+      border: none;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: darkorange;
+    }
+    .result {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 20px;
+      color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">E-learning</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="certificate.html">Student Certificate</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+
+  <div class="quiz-container">
+    <h2>Data Structures  Quiz</h2>
+    <form id="quizForm">
+      
+      <!-- 20 Questions -->
+      <div class="question">
+        <p>1. DSU stands for:</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> Data System Union</label>
+          <label><input type="radio" name="q1" value="B"> Disjoint Set Union</label>
+          <label><input type="radio" name="q1" value="C"> Data Set Utility</label>
+          <label><input type="radio" name="q1" value="D"> Distributed Set Unit</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>2. DSU is mainly used to solve:</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="A"> Sorting problems</label>
+          <label><input type="radio" name="q2" value="B"> Searching problems</label>
+          <label><input type="radio" name="q2" value="C"> Graph connectivity problems</label>
+          <label><input type="radio" name="q2" value="D"> String matching problems</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>3. Which two main operations does DSU support?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="A"> Insert and Delete</label>
+          <label><input type="radio" name="q3" value="B"> Push and Pop</label>
+          <label><input type="radio" name="q3" value="C"> Find and Union</label>
+          <label><input type="radio" name="q3" value="D"> Merge and Split</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>4. The “Find” operation in DSU is used to:</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="A"> Find the parent (representative) of a set</label>
+          <label><input type="radio" name="q4" value="B"> Find the minimum value</label>
+          <label><input type="radio" name="q4" value="C"> Find connected nodes</label>
+          <label><input type="radio" name="q4" value="D"> None of these</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>5. Path compression is used in DSU to:</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="A"> Reduce memory</label>
+          <label><input type="radio" name="q5" value="B"> Reduce height of trees</label>
+          <label><input type="radio" name="q5" value="C"> Increase tree height</label>
+          <label><input type="radio" name="q5" value="D"> Remove duplicates</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>6. Union by rank helps to:</p>
+        <div class="options">
+          <label><input type="radio" name="q6" value="A"> Balance the DSU tree</label>
+          <label><input type="radio" name="q6" value="B"> Increase time complexity</label>
+          <label><input type="radio" name="q6" value="C"> Store more nodes</label>
+          <label><input type="radio" name="q6" value="D"> None of these</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>7. Time complexity of DSU operations with path compression and union by rank:</p>
+        <div class="options">
+          <label><input type="radio" name="q7" value="A"> O(1)</label>
+          <label><input type="radio" name="q7" value="B"> O(log n)</label>
+          <label><input type="radio" name="q7" value="C"> Nearly O(1)</label>
+          <label><input type="radio" name="q7" value="D"> O(n)</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>8. DSU is widely used in which algorithm?</p>
+        <div class="options">
+          <label><input type="radio" name="q8" value="A"> Dijkstra’s Algorithm</label>
+          <label><input type="radio" name="q8" value="B"> Kruskal’s Algorithm</label>
+          <label><input type="radio" name="q8" value="C"> Prim’s Algorithm</label>
+          <label><input type="radio" name="q8" value="D"> Floyd-Warshall Algorithm</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>9. In DSU, each set is represented by:</p>
+        <div class="options">
+          <label><input type="radio" name="q9" value="A"> Root node</label>
+          <label><input type="radio" name="q9" value="B"> Last node</label>
+          <label><input type="radio" name="q9" value="C"> Random node</label>
+          <label><input type="radio" name="q9" value="D"> Leaf node</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>10. What is the initial parent of every node in DSU?</p>
+        <div class="options">
+          <label><input type="radio" name="q10" value="A"> -1</label>
+          <label><input type="radio" name="q10" value="B"> NULL</label>
+          <label><input type="radio" name="q10" value="C"> Itself</label>
+          <label><input type="radio" name="q10" value="D"> Root node</label>
+        </div>
+      </div>
+
+      <!-- 11 to 20 -->
+      <div class="question">
+        <p>11. Which data structure is DSU typically implemented with?</p>
+        <div class="options">
+          <label><input type="radio" name="q11" value="A"> Array</label>
+          <label><input type="radio" name="q11" value="B"> Queue</label>
+          <label><input type="radio" name="q11" value="C"> Stack</label>
+          <label><input type="radio" name="q11" value="D"> Linked List</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>12. Which of the following is NOT an application of DSU?</p>
+        <div class="options">
+          <label><input type="radio" name="q12" value="A"> Connected components</label>
+          <label><input type="radio" name="q12" value="B"> Cycle detection</label>
+          <label><input type="radio" name="q12" value="C"> Minimum spanning tree</label>
+          <label><input type="radio" name="q12" value="D"> Quick sort</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>13. DSU is also known as:</p>
+        <div class="options">
+          <label><input type="radio" name="q13" value="A"> Union-Find</label>
+          <label><input type="radio" name="q13" value="B"> Find-Search</label>
+          <label><input type="radio" name="q13" value="C"> Connected-Graph</label>
+          <label><input type="radio" name="q13" value="D"> None</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>14. Path compression works during:</p>
+        <div class="options">
+          <label><input type="radio" name="q14" value="A"> Union</label>
+          <label><input type="radio" name="q14" value="B"> Find</label>
+          <label><input type="radio" name="q14" value="C"> Insert</label>
+          <label><input type="radio" name="q14" value="D"> Delete</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>15. In DSU, if two nodes have the same parent, they are:</p>
+        <div class="options">
+          <label><input type="radio" name="q15" value="A"> In different sets</label>
+          <label><input type="radio" name="q15" value="B"> In the same set</label>
+          <label><input type="radio" name="q15" value="C"> Isolated</label>
+          <label><input type="radio" name="q15" value="D"> Unconnected</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>16. Which complexity is achieved by DSU with optimizations?</p>
+        <div class="options">
+          <label><input type="radio" name="q16" value="A"> O(α(n))</label>
+          <label><input type="radio" name="q16" value="B"> O(n log n)</label>
+          <label><input type="radio" name="q16" value="C"> O(log n)</label>
+          <label><input type="radio" name="q16" value="D"> O(n)</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>17. Which of the following can detect cycles in an undirected graph?</p>
+        <div class="options">
+          <label><input type="radio" name="q17" value="A"> BFS</label>
+          <label><input type="radio" name="q17" value="B"> DFS</label>
+          <label><input type="radio" name="q17" value="C"> DSU</label>
+          <label><input type="radio" name="q17" value="D"> Dijkstra</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>18. In union by size, the smaller tree is:</p>
+        <div class="options">
+          <label><input type="radio" name="q18" value="A"> Ignored</label>
+          <label><input type="radio" name="q18" value="B"> Deleted</label>
+          <label><input type="radio" name="q18" value="C"> Made root</label>
+          <label><input type="radio" name="q18" value="D"> Attached to larger tree</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>19. DSU is efficient because of:</p>
+        <div class="options">
+          <label><input type="radio" name="q19" value="A"> Hashing</label>
+          <label><input type="radio" name="q19" value="B"> Path compression and union by rank</label>
+          <label><input type="radio" name="q19" value="C"> Sorting</label>
+          <label><input type="radio" name="q19" value="D"> Divide and conquer</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>20. Which problem is best solved by DSU?</p>
+        <div class="options">
+          <label><input type="radio" name="q20" value="A"> Dynamic connectivity</label>
+          <label><input type="radio" name="q20" value="B"> Binary search</label>
+          <label><input type="radio" name="q20" value="C"> Matrix multiplication</label>
+          <label><input type="radio" name="q20" value="D"> String concatenation</label>
+        </div>
+      </div>
+
+      <button type="button" class="btn" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      let score = 0;
+      const answers = {
+        q1: "B", q2: "C", q3: "C", q4: "A", q5: "B",
+        q6: "A", q7: "C", q8: "B", q9: "A", q10: "C",
+        q11: "A", q12: "D", q13: "A", q14: "B", q15: "B",
+        q16: "A", q17: "C", q18: "D", q19: "B", q20: "A"
+      };
+      for (let q in answers) {
+        let selected = document.querySelector(`input[name=${q}]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+      document.getElementById("result").innerText = "Your Score: " + score + "/20";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OBJECT ORIENTED PROGRAMMING USING C++</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #000000, #660000);
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fefefe;
+      text-shadow: 2px 2px 5px black;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #FF4500;
+      background: rgba(255, 69, 0, 0.2);
+      padding: 6px;
+      border-left: 5px solid #FF4500;
+      border-radius: 5px;
+      margin-top: 25px;
+    }
+
+    h3 {
+      color: #00CED1;
+      margin-top: 15px;
+    }
+
+    p {
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: #222;
+      color: orange;
+      border: none;
+      padding: 12px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: 0.3s;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .tab-btn:hover {
+      background: orange;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .tab-btn.active {
+      background: orange;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      max-height: 500px;       /* 👈 scroll area */
+      overflow-y: auto;
+      animation: fadeIn 0.6s;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Scrollbar styling */
+    .tab-content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .tab-content::-webkit-scrollbar-thumb {
+      background: orange;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PROGRAMMING IN C++</h1>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openUnit(1)">Unit 1</button>
+    <button class="tab-btn" onclick="openUnit(2)">Unit 2</button>
+    <button class="tab-btn" onclick="openUnit(3)">Unit 3</button>
+    <button class="tab-btn" onclick="openUnit(4)">Unit 4</button>
+    <button class="tab-btn" onclick="openUnit(5)">Unit 5</button>
+  </div>
+
+  <!-- Notes -->
+  <div id="unit1" class="tab-content active">
+    <h1>Unit - I Principles of Object Oriented Programming</h1>
+      <h2>1.1 Java features and the Java programming environment</h2>
+         <h3>#Features of OOP:</h3>
+          <p>1) Emphasis is on data rather than procedure.<br>
+             2) Programs are divided into Objects.<br>
+             3) Data is hidden and can not accessed from the external functions.<br>
+             4) Objects may communicate with each other through functions.<br>
+             5) New data and functions can be added easily whenever required.<br>
+             6) OOP follow bottom-up approach in program design.<br>
+             7) Object is a collection of data & functions, function operates on data.<br>
+             8) More security provided for the data compare to POP.<br>
+             9) Data cannot move openely from one function to another function.<br>
+          </p>
+         <h3>#Basic concepts of OOP:</h3>
+           <p><h3>1) Objects:</h3><br>
+            - Basic runtime entities known as object.<br>
+            - They may represent person, table, bank account or any item that program may handle.<br>
+            - Object is a collection of data and functions.<br>
+            - Objects are created from class.<br>
+         <h3>2) Classes:</h3><br>
+             - It is a collection of similiar types of objects.<br>
+             - Class is a collection of data and functions, functions operate on data.<br>
+             - You may creates objects from the class.<br>
+             - When you define the class then memory will not be allocated for the members.<br>
+             - Class shows data abstraction and data encapsulation features.<br>
+             - Example: Fruit mango<br>
+             - In above example, mango is an object which is created from class Fruit.<br>
+         <h3>3) Data Abstraction:</h3><br>
+             - To show only essential details without background details.<br>
+         <h3>4) Data Encapsulation:</h3><br>
+             - The wrapping up of data and functions into a single unit is known as Data Encapsulation.<br>
+         <h3>5) Inheritance:</h3><br>
+             - The process of creating new class by using the concept of old class is known as Inheritance.<br>
+             - Newly created class is known as Derived class.<br>
+             - Old class is known as Base class.<br>
+         <h3>6) Polymorphism:<br></h3>
+             - Polymorphism is a greek word.<br>
+             - Poly means 'many' and morphism means 'forms'.<br>
+             - Ability to take more than one forms is known as Polymorphism.<br>
+             - There are two different types of Polymorphism<br>
+             -> Compile time Polymorphism<br>
+              => Function Overloading<br>
+              => Operator Overloading //this is not supported in java<br>
+              -> Run time Polymorphism<br>
+               => Virtual Function <br>
+         <h3>7) Dynamic Binding:</h3><br>
+             - The linking between calling function and called function is known as binding.<br>
+             - But that linking is not known until the execution of program is known as dynamic binding.<br>
+         <h3>8) Message Passing:</h3><br>
+             - In OOP, we can create set of objects that communicate with each other.<br>
+             - I) Creating classes that define objects.<br>
+               II) Creating objects from the class definition.<br>
+               III) Establishing communication among objects.<br></p>
+         <h3>#Benefits of OOP</h3>
+          <p>1) Using concept inheritance, we can achieve reusability.<br>
+             2) Data hiding<br>
+             3) Software complexity can be easily managed.<br>
+             4) Object oriented system can be easily upgraded from small to large systems.<br>
+             5) It is easy to partition work in the project based on objects.</p>
+         <h3>#Application of OOP</h3>
+          <P>1) Real time systems.<br>
+             2) Simulation and modeling<br>
+             3) Object-oriented databases<br>
+             4) Hypertext,hypermedia and experttext.<br>
+             5) AI and expert systems.<br>
+             6) Neaural networks and parallel programming.<br>
+             7) Decision support and office automation System.<br>
+             8) CIM/CAD System</P>
+        
+         <h3># Java History:</h3>
+          <p>- Java is a general purpose, object oriented programming language.<br>
+            - It was developed by Sun MircoSystem of USA.<br>
+            - James Gosling is owner of Java language.<br>
+            - It was developed in year 1991.<br>
+            - Initially, it was called as Oak (tree name)<br>
+            - It's name got changed to Java in year 1995.</p>
+         <h3>#Java Features:</h3>
+           <h3>1) Compiled and Interpreted:</h3>
+             <p>- Usually computer language is either compiled or interpreted.<br>
+                - But java combines both these approaches thats via Java is called as two stag compilation process programming language.<br>
+                - Java compiler takes java source file(.java) as input and generates byte file(.byte).<br>
+                - Byte file is not a machine code and this file not exists physically in your machine.<br>
+                - Byte code generated virtually and process virtually.<br>
+                - Java Interpreter generates machine code from byte code.</p>
+           <h3>2) Platform Independent and Portable:</h3>
+             <p>- Java program can be easily moved from one computer to another computer,anywhere and anytime.<br>
+                - It means, if we develop Java code on Windows machine then you can easily run thatand anytime.code on other operating systems like Linux,Unix,etc.<br>
+                - To move java code from one machine to another machine is known as portability.</p>
+           <h3>3) Object Oriented:</h3>
+             <p>- Java is true object-oriented language.<br>
+                - Almost everything in java is an object.<br>
+                - All program code and data reside within objects and classes.<br>
+                - Java is a colletion of rich set of predefined classes and packages, that we can use in our programs by inheritance.</p>              
+           <h3>4) Robust & Secure:</h3>
+                <p>-  Java is robust language.<br>
+                  - It provides many safeguards to ensure reliable code.<br>
+                  - It has strict compile time and runtime checking for data types.<br>
+                  - It supports garbage collection feature that would solve memory management problem.<br>
+                  - It supports exception handling which help us to captures many errors.<br>
+                  - Java is more secure programming language which is used for programming on internet.<br>
+                  - Java systems not only verify all memory access but also ensure that no viruses are communicated with an applet.</p>
+           <h3>5) Distributed:</h3>
+                <p>- Java is designed as distributed langauge for creating applications on networks.<br>
+                  - It has ability to share both data and programs.<br>
+                  - Java application can open and access remote objects on internet.<br>
+                  - This enables multiple programmers at multiple locations to collaborate and work<br>together on a single object.</p>
+           <h3>6) Simple, Small and Familiar:</h3>
+                <p>- Java is a small and simple language.<br>
+                  - Many features of C & C++ which are not relible that was not added in Java.<br>
+                  - Java does not use pointers, preprocessor directive, goto statement and many others.<br>
+                  - Also not included multiple inheritance and operator overloading features.<br>
+                  - Familiarity is another important feature of Java.</p>
+           <h3>7) Multi-threaded and Interactive:</h3>
+                <p>- Thread is a light weight process because it takes small amount of memory space for their execution.<br>
+                   - When mutliple thread executes simultaneously then it is called as Multithreading.- Thread is a light weight process because it takes small amount of memory space for their execution.<br>
+                   - Java supports multithreaded programs.<br>
+                   - This means that we need not to wait for the application to finish one task beforebeginning another.<br>
+                   - Due to this feature, we can create more interactive programs in java.</p>
+           <h3>8) High Performance:</h3>
+                <p>- Java performance is impressive for an interpreted language, mainly due to the useof byte code.<br>
+                  - Java speed is more faster than C/C++ language.<br>
+                  - Java architecture is also designed to reduce overhead during the runtime.<br>
+                  - Due to multi-threading fetures Java program execution speed is increased.</p>
+           <h3>9) Dynamic & Extensible:</h3>
+                <p>- Java is dynamic language.<br>
+                   - Java is capable of dynamically linking in new class libraries,methods and objects.<br>
+                   - Java programs support functions written in othet languages such as c and C++.<br>
+                   - This facility enables the programmers to use the efficient functions in these languages.<br>
+                   - It is called as native functions/methods.<br>
+                   - Native methods are linked dynamically at runtime.<br>
+           <h3># Difference between Java and c </h3>
+                <p>
+                  1) Java is Object oriented programming language and C is Procedure oriented programming.<br>
+                  2) Java does not include c keyword sizeof and typedef.<br>
+                  3) Java does not contain data types struct and union.<br>
+                  4) Java does not define the data type modifiers keyword auto,extern,register,signedand unsigned.<br>
+                  5) Java does not support pointer concept.<br>
+                  6) Java does not have preprocessor directive and thats via we don't use #define, #include<br>
+                  7) Java adds labeled break and continue statements.<br>
+                  8) Java adds new operators such as instanceof.<br>
+                  9) Java adds many required features of Object Oriented Programming Language.<br></p>
+                  <p>
+           <h3>#Java Environment</h3>
+                <p>
+                  1) C++ is object-oriented programming but Java is true object-oriented programming.<br>
+                  2) Java does not support operator overloading.<br>
+                  3) Java does not support pointer concept.<br>
+                  4) Java does not support multiple inheritance. But you can implement it using new feature called 'interface'.<br>
+                  5) Java does not support global variable.<br>
+                  6) Java does not support destructor function but we use finalize() method.<br>
+                  7) There is no header files in Java.<br></p>
+           <h3>#Java Environment</h3>
+                <p>
+                 - Java environment includes development tools(JDK) and classes & method(JSL-API).<br>
+                 - JDK stands for Java development kit.<br>
+                 - JVM stands for Java Virtual Machine.<br>
+                 - JRE stands for Java Runtime Environment.<br></p>
+           <h3>1) Java Development kit(JDK)</h3>
+                <p>JDK is an acronym for Java Development Kit. The Java Development Kit (JDK) is a software development environment that is used to develop Java applications and applets. It physically exists. It contains JRE + development tools.<br>
+                  JDK is an implementation of any one of the below given Java Platforms released by Oracle Corporation:<br>
+                  * Standard Edition Java Platform<br>
+                  * Enterprise Edition Java Platform<br>
+                  * Micro Edition Java Platform<br>
+                  The JDK contains a private Java Virtual Machine (JVM) and a few other resources, such as an interpreter/loader (java), a compiler (javac), an archiver (jar), a documentation generator (Javadoc), etc., to complete the development of a Java Application.</p>
+                <p>
+                    => javac : Java compiler (javac filename.java) <br>
+                    => java : Java Interpreter (java filename) <br>
+                    => jdb : Java Debugger <br>
+                    => appletviewer : for running java applets.<br>
+                    => javah : for c header files. <br>
+                    => javadoc : for creating HTML documents.<br>
+                    => javap : Java disassembler(convert byte file to program)</p>
+           <h3>2)Java Virtual Machine</h3>
+                <p> JVM (Java Virtual Machine) is an abstract machine. It is called a virtual machine because it doesn't physically exist.
+                  It is a specification that provides a runtime environment in which Java bytecode can be executed.
+                  It can also run those programs that are written in other languages and compiled to Java bytecode.<br>
+                  JVMs are available for many hardware and software platforms. JVM, JRE, and JDK are platform dependent because the configuration of each OS is different from that of others.
+                   However, Java is platform independent. There are three notions of the JVM: specification, implementation, and instance.
+                   *The JVM performs the following main tasks:<br>
+                   *Loads code<br>
+                   *Verifies code<br>
+                   *Executes code<br>
+                   *Provides runtime environment</p>
+           <h3>Java Runtime Environment.</h3>
+                <p>JRE is an acronym for Java Runtime Environment. It is also written as Java RTE.
+                  The Java Runtime Environment is a set of software tools that are used for developing Java applications. It is used to provide the runtime environment. It is the implementation of JVM. It physically exists.
+                  It contains a set of libraries + other files that the JVM uses at runtime.
+                </p>
+        <h2>1.2 Defining a class, creating object, accessing class members</h2>
+           <h3>Defining the Class:</h3>
+             <p>- Class is a collection of similiar types of objects.<br>
+                - Class is a user defined data type.- Class contains instance variables and methods.<br>
+                - Class shows data abstraction and data encapsulation properties.<br>
+                - Syntax:<br>
+                &nbsp;class Class_Name<br>
+                &nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;datatype instance_variable1;<br>
+                &nbsp;&nbsp;datatype instance_variable2;<br>
+                &nbsp;&nbsp;datatype instance_variableN;<br>
+                &nbsp;&nbsp;returntype Method_Name1(parameter_list)<br>
+                &nbsp;&nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp; //body of method<br>
+                &nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;returntype Method_Name2(parameter_list)<br>
+                &nbsp;&nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp; //body of method<br>
+                &nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;returntype Method_NameN(parameter_list)<br>
+                &nbsp;&nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp; //body of method<br>
+                &nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;}<br>
+              </p>
+           <h3>Creating an Objects:</h3>
+              <p>
+                - An object is instance of the class.<br>
+                - When object is created then memory will be allocated for the instance variables of the class.<br>
+                - We can create N no of objects from the class.<br>
+                - Objects are created using new operator.<br>
+                - The new operator creates an objects of the class and return reference to the object created.<br>
+              </p>
+              <p>
+              1)Declaration of Object:<br>
+                Syntax : ClassName ObjectName;<br>
+                Example: Addition a1;<br>
+              2)Instantiate of Object:<br>
+                Syntax : ObjectName=new ClassName(Parameter_list);<br>
+                 Example: a1=new Addition();<br>
+              - Combining the above two steps:<br>
+               Syntax : ClassName ObjectName=new ClassName(Parameter_list);<br>
+                Example: Addition a1=new Addition();<br>
+              </p>
+            <h3>Accessing Class Members:</h3>
+               <p>- Object contain data members and member function.<br>
+                - So we can access them by using object name and dot operator.<br>
+                - Syntax:<br>
+                &nbsp;&nbsp;ObjectName.Variable_Name=value;<br>
+                &nbsp;&nbsp;ObjectName.Method_Name(Parameter_list);<br>
+                - Example:<br>
+                &nbsp;&nbsp;a1.a=100;<br>
+                &nbsp;&nbsp;a1.b=200;<br>
+                &nbsp;&nbsp;a1.getdata();<br>
+                &nbsp;&nbsp;a1.display();<br>
+               </p>
+        <h2>1.3 Java tokens and data types, symbolic constant, scope of variable, typecasting, and different types of operators and expressions, decision making and looping statements</h2>
+            <h3>Java tokens </h3>
+               <p>In Java, Tokens are the smallest elements of a program that is meaningful to the compiler.
+                They are also known as the fundamental building blocks of the program. 
+                Tokens can be classified as follows:<br>
+                &nbsp;1)Keywords<br>
+                &nbsp;2)Identifiers<br>
+                &nbsp;3)Constants/Literals<br>
+                &nbsp;4)Operators<br>
+                &nbsp;5)Separators<br>
+               </p>
+            <h3>Data Types in Java</h3>
+               <p>In programming languages, data types specify the different sizes and values that can be stored in the variable or constants. Each data type is predefined, which makes Java a statically and strongly typed language. There are the following two types of data types in Java.
+                <h3>1)Primitive Data Types:</h3> 
+                  <p>The primitive data types include boolean, char, byte, short, int, long, float and double.</p> 
+                <h3>2)Non-Primitive Data Types:</h3>
+                  <p>The non-primitive data types include Classes, Interfaces, String, and Arrays.</p>
+                <img src="C:\Users\hp\Downloads\Pictures\Screenshots\Screenshot 2025-08-20 124104.png"S alt="description" width="600" height="300">
+
+            
+
+
+
+
+
+</div>
+
+  <div id="unit2" class="tab-content">
+    <h2>Unit - II Functions and Constructors</h2>
+    <p>This unit covers if-else, loops (for, while, do-while)...</p>
+    
+     
+    
+  </div>
+
+  <div id="unit3" class="tab-content">
+    <h2>Unit - III Extending classes using Inheritance</h2>
+    <p>In this unit, we discuss functions (user-defined & library), arrays...</p>
+  </div>
+
+  <div id="unit4" class="tab-content">
+    <h2>Unit - IV Pointers and Polymorphism in C++</h2>
+    <p>Pointers are variables that store memory addresses...</p>
+  </div>
+
+  <div id="unit5" class="tab-content">
+    <h2>Unit - V File operations</h2>
+    <p>This unit covers structures, unions, and basic file handling...</p>
+  </div>
+
+  <script>
+    function openUnit(unitNumber) {
+      // Hide all contents
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(c => c.classList.remove('active'));
+
+      // Remove active from all buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      // Show selected content
+      document.getElementById("unit" + unitNumber).classList.add('active');
+      buttons[unitNumber - 1].classList.add('active');
+    }
+  </script>
+</body>
+</html>

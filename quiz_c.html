@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C Quiz - E-learning</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #000000, #002b4b);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: black;
+    }
+    .navbar .logo {
+      color: orange;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .quiz-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 140, 0, 0.6);
+    }
+    .quiz-container h2 {
+      text-align: center;
+      color: orange;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    .btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: orange;
+      border: none;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: darkorange;
+    }
+    .result {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 20px;
+      color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">E-learning</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="certificate.html">Student Certificate</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+
+  <div class="quiz-container">
+    <h2>C Language Quiz</h2>
+    <form id="quizForm">
+      
+      <!-- 20 MCQs -->
+      <div class="question">
+        <p>1. Which of the following is a valid C keyword?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> include</label>
+          <label><input type="radio" name="q1" value="B"> printf</label>
+          <label><input type="radio" name="q1" value="C"> scanf</label>
+          <label><input type="radio" name="q1" value="D"> auto</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>2. Which symbol is used to denote a preprocessor directive?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="A"> $</label>
+          <label><input type="radio" name="q2" value="B"> #</label>
+          <label><input type="radio" name="q2" value="C"> @</label>
+          <label><input type="radio" name="q2" value="D"> %</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>3. Which function is used to print output in C?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="A"> output()</label>
+          <label><input type="radio" name="q3" value="B"> println()</label>
+          <label><input type="radio" name="q3" value="C"> printf()</label>
+          <label><input type="radio" name="q3" value="D"> print()</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>4. Which data type is used to store a single character in C?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="A"> char</label>
+          <label><input type="radio" name="q4" value="B"> string</label>
+          <label><input type="radio" name="q4" value="C"> int</label>
+          <label><input type="radio" name="q4" value="D"> float</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>5. Which format specifier is used for integers in C?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="A"> %f</label>
+          <label><input type="radio" name="q5" value="B"> %c</label>
+          <label><input type="radio" name="q5" value="C"> %d</label>
+          <label><input type="radio" name="q5" value="D"> %s</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>6. What is the default return type of a C function if not specified?</p>
+        <div class="options">
+          <label><input type="radio" name="q6" value="A"> void</label>
+          <label><input type="radio" name="q6" value="B"> int</label>
+          <label><input type="radio" name="q6" value="C"> float</label>
+          <label><input type="radio" name="q6" value="D"> char</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>7. What is the size of int on most 32-bit compilers?</p>
+        <div class="options">
+          <label><input type="radio" name="q7" value="A"> 2 bytes</label>
+          <label><input type="radio" name="q7" value="B"> 4 bytes</label>
+          <label><input type="radio" name="q7" value="C"> 8 bytes</label>
+          <label><input type="radio" name="q7" value="D"> 16 bytes</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>8. Which loop executes at least once?</p>
+        <div class="options">
+          <label><input type="radio" name="q8" value="A"> for</label>
+          <label><input type="radio" name="q8" value="B"> while</label>
+          <label><input type="radio" name="q8" value="C"> do-while</label>
+          <label><input type="radio" name="q8" value="D"> foreach</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>9. Which operator is used to access value at an address?</p>
+        <div class="options">
+          <label><input type="radio" name="q9" value="A"> *</label>
+          <label><input type="radio" name="q9" value="B"> &</label>
+          <label><input type="radio" name="q9" value="C"> -></label>
+          <label><input type="radio" name="q9" value="D"> .</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>10. Which function is used to get input from the user?</p>
+        <div class="options">
+          <label><input type="radio" name="q10" value="A"> input()</label>
+          <label><input type="radio" name="q10" value="B"> scanf()</label>
+          <label><input type="radio" name="q10" value="C"> get()</label>
+          <label><input type="radio" name="q10" value="D"> cin()</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>11. What is the correct header file for printf()?</p>
+        <div class="options">
+          <label><input type="radio" name="q11" value="A"> stdlib.h</label>
+          <label><input type="radio" name="q11" value="B"> string.h</label>
+          <label><input type="radio" name="q11" value="C"> stdio.h</label>
+          <label><input type="radio" name="q11" value="D"> conio.h</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>12. Which keyword is used to define a constant?</p>
+        <div class="options">
+          <label><input type="radio" name="q12" value="A"> const</label>
+          <label><input type="radio" name="q12" value="B"> static</label>
+          <label><input type="radio" name="q12" value="C"> define</label>
+          <label><input type="radio" name="q12" value="D"> fixed</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>13. What is the base address of an array?</p>
+        <div class="options">
+          <label><input type="radio" name="q13" value="A"> The address of first element</label>
+          <label><input type="radio" name="q13" value="B"> The address of last element</label>
+          <label><input type="radio" name="q13" value="C"> Always NULL</label>
+          <label><input type="radio" name="q13" value="D"> Random value</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>14. Which operator is used to calculate remainder?</p>
+        <div class="options">
+          <label><input type="radio" name="q14" value="A"> /</label>
+          <label><input type="radio" name="q14" value="B"> %</label>
+          <label><input type="radio" name="q14" value="C"> *</label>
+          <label><input type="radio" name="q14" value="D"> #</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>15. Which function is used to dynamically allocate memory?</p>
+        <div class="options">
+          <label><input type="radio" name="q15" value="A"> alloc()</label>
+          <label><input type="radio" name="q15" value="B"> malloc()</label>
+          <label><input type="radio" name="q15" value="C"> memory()</label>
+          <label><input type="radio" name="q15" value="D"> calloc()</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>16. Which function terminates a C program?</p>
+        <div class="options">
+          <label><input type="radio" name="q16" value="A"> stop()</label>
+          <label><input type="radio" name="q16" value="B"> end()</label>
+          <label><input type="radio" name="q16" value="C"> exit()</label>
+          <label><input type="radio" name="q16" value="D"> break()</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>17. Which symbol is used to denote a pointer?</p>
+        <div class="options">
+          <label><input type="radio" name="q17" value="A"> *</label>
+          <label><input type="radio" name="q17" value="B"> &</label>
+          <label><input type="radio" name="q17" value="C"> #</label>
+          <label><input type="radio" name="q17" value="D"> @</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>18. Which keyword is used to create a structure?</p>
+        <div class="options">
+          <label><input type="radio" name="q18" value="A"> struct</label>
+          <label><input type="radio" name="q18" value="B"> class</label>
+          <label><input type="radio" name="q18" value="C"> object</label>
+          <label><input type="radio" name="q18" value="D"> record</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>19. What is the size of char in C?</p>
+        <div class="options">
+          <label><input type="radio" name="q19" value="A"> 1 byte</label>
+          <label><input type="radio" name="q19" value="B"> 2 bytes</label>
+          <label><input type="radio" name="q19" value="C"> 4 bytes</label>
+          <label><input type="radio" name="q19" value="D"> Depends on compiler</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>20. Which keyword is used to jump out of a loop?</p>
+        <div class="options">
+          <label><input type="radio" name="q20" value="A"> continue</label>
+          <label><input type="radio" name="q20" value="B"> stop</label>
+          <label><input type="radio" name="q20" value="C"> exit</label>
+          <label><input type="radio" name="q20" value="D"> break</label>
+        </div>
+      </div>
+
+      <button type="button" class="btn" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      let score = 0;
+      const answers = {
+        q1: "D", q2: "B", q3: "C", q4: "A", q5: "C",
+        q6: "B", q7: "B", q8: "C", q9: "A", q10: "B",
+        q11: "C", q12: "A", q13: "A", q14: "B", q15: "B",
+        q16: "C", q17: "A", q18: "A", q19: "A", q20: "D"
+      };
+      for (let q in answers) {
+        let selected = document.querySelector(`input[name=${q}]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+      document.getElementById("result").innerText = "Your Score: " + score + "/20";
+    }
+  </script>
+</body>
+</html>

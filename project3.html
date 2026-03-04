@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrandVista Hotel</title>
+  <style>
+    :root{
+      --primary:#ffb703; /* amber */
+      --accent:#219ebc;  /* blue */
+      --bg:#0f172a;      /* slate-900 */
+      --card:#111827;    /* gray-900 */
+      --muted:#94a3b8;   /* slate-400 */
+      --ok:#22c55e;
+      --danger:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',"Apple Color Emoji","Segoe UI Emoji";background:linear-gradient(120deg,#000000,#012a2a,#001d3d);color:#fff;}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    .nav{position:sticky;top:0;z-index:50;background:#000000cc;backdrop-filter:blur(6px);border-bottom:1px solid #1f2937}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.5px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px var(--primary)}
+    .menu{display:flex;gap:18px;font-weight:600}
+    .menu a{opacity:.9}
+    .menu a:hover{color:var(--primary)}
+
+    .hero{position:relative;isolation:isolate}
+    .hero .bg{
+      position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1501117716987-c8e1ecb2101f?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;opacity:.35;z-index:-1;filter:saturate(1.2) contrast(1.05)
+    }
+    .hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.8));z-index:-1}
+    .hero .content{padding:72px 0 56px}
+    .hero h1{font-size:44px;line-height:1.1;margin:0 0 10px;font-weight:900}
+    .hero p{color:var(--muted);max-width:700px}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:14px;border:1px solid #2b364a;background:#0b1220;color:#fff;font-weight:700;cursor:pointer;transition:.2s}
+    .btn.primary{background:linear-gradient(135deg,var(--primary),#ff7b00);color:#111}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px #00000055}
+
+    section{padding:56px 0;border-top:1px solid #1f2937}
+    h2.section-title{font-size:28px;margin:0 0 18px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+
+    /* Rooms grid */
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 18px}
+    .input,.select{padding:10px 12px;border-radius:12px;border:1px solid #243043;background:#0b1220;color:#e5e7eb}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+    .card{background:rgba(17,24,39,.8);border:1px solid #1f2937;border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+    .card img{width:100%;height:180px;object-fit:cover}
+    .card .pad{padding:14px}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:#0b1220;border:1px solid #233046;color:#cbd5e1;font-size:12px;margin-right:6px}
+    .price{font-weight:900;font-size:20px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* Booking form */
+    .form{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .form .full{grid-column:1/-1}
+    .form label{font-size:13px;color:#cbd5e1}
+    .form input,.form select, .form textarea{width:100%;margin-top:6px}
+    .note{font-size:12px;color:#9ca3af}
+
+    /* Admin */
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{border-bottom:1px solid #1f2937;padding:10px;text-align:left}
+    .badge{padding:4px 8px;border-radius:999px;background:#0b1220;border:1px solid #243043;color:#cbd5e1;font-size:12px}
+
+    footer{padding:28px 0;color:#9ca3af;text-align:center}
+  </style>
+</head>
+<body>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span class="dot"></span> GrandVista Hotel</div>
+      <div class="menu">
+        <a href="#rooms">Rooms</a>
+        <a href="#book">Book</a>
+        <a href="#about">About</a>
+        <a href="#admin" id="adminLink">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="bg"></div>
+    <div class="shade"></div>
+    <div class="container content">
+      <h1>Relax. Refresh. <span style="color:var(--primary)">Repeat.</span></h1>
+      <p class="lead">Experience boutique comfort in the heart of the city. Smart check-in, handcrafted breakfasts, and a view you'll remember. Book in under a minute.</p>
+      <div class="cta">
+        <a class="btn primary" href="#book">Book a Room</a>
+        <a class="btn" href="#rooms">Browse Rooms</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Rooms -->
+  <section id="rooms">
+    <div class="container">
+      <h2 class="section-title">Our Rooms</h2>
+      <p class="lead">Choose from cozy singles to luxurious suites. Filter by capacity and price to find your perfect stay.</p>
+
+      <div class="toolbar">
+        <input id="q" class="input" placeholder="Search by name or feature…" />
+        <select id="cap" class="select">
+          <option value="">Capacity</option>
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3+ Guests</option>
+        </select>
+        <select id="price" class="select">
+          <option value="">Max Price / night</option>
+          <option value="100">$100</option>
+          <option value="200">$200</option>
+          <option value="300">$300</option>
+          <option value="400">$400</option>
+        </select>
+        <button class="btn" onclick="applyFilters()">Apply Filters</button>
+        <button class="btn" onclick="resetFilters()">Reset</button>
+      </div>
+
+      <div id="roomsGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="book">
+    <div class="container">
+      <h2 class="section-title">Book Your Stay</h2>
+      <p class="lead">Complete the form below. You'll see an instant price estimate before confirming.</p>
+
+      <form id="bookingForm" class="form" onsubmit="submitBooking(event)">
+        <div>
+          <label>First Name
+            <input class="input" name="firstName" required />
+          </label>
+        </div>
+        <div>
+          <label>Last Name
+            <input class="input" name="lastName" required />
+          </label>
+        </div>
+        <div>
+          <label>Email
+            <input class="input" type="email" name="email" required />
+          </label>
+        </div>
+        <div>
+          <label>Phone
+            <input class="input" type="tel" name="phone" placeholder="+91 98765 43210" />
+          </label>
+        </div>
+        <div>
+          <label>Check-in
+            <input class="input" type="date" name="checkin" required />
+          </label>
+        </div>
+        <div>
+          <label>Check-out
+            <input class="input" type="date" name="checkout" required />
+          </label>
+        </div>
+        <div>
+          <label>Guests
+            <select class="select" name="guests" required>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Room Type
+            <select class="select" name="roomType" id="roomType" required></select>
+          </label>
+        </div>
+        <div class="full">
+          <label>Special Requests
+            <textarea class="input" name="notes" rows="3" placeholder="Late check-in, high floor, etc."></textarea>
+          </label>
+          <div class="note">By submitting, you agree to our terms and privacy policy.</div>
+        </div>
+        <div class="full" id="estimate" style="display:none"></div>
+        <div class="full">
+          <button class="btn primary" type="submit">Confirm Booking</button>
+          <button class="btn" type="button" onclick="estimatePrice()">Estimate Price</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About GrandVista</h2>
+      <p class="lead">We're an independent boutique hotel blending modern tech with timeless hospitality. 24/7 concierge, airport shuttle, rooftop lounge, and complimentary breakfast.</p>
+    </div>
+  </section>
+
+  <!-- Admin -->
+  <section id="admin">
+    <div class="container">
+      <h2 class="section-title">Admin Panel</h2>
+      <p class="lead">View and manage bookings stored in this browser. Protect with a simple passcode.</p>
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+        <input id="adminPass" class="input" type="password" placeholder="Enter passcode (default: admin123)" />
+        <button class="btn" onclick="unlockAdmin()">Unlock</button>
+        <button class="btn" onclick="exportCSV()">Export CSV</button>
+        <button class="btn" onclick="clearAll()" style="background:linear-gradient(135deg,var(--danger),#b91c1c)">Clear All</button>
+      </div>
+      <div style="overflow:auto">
+        <table class="table" id="bookingsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Nights</th>
+              <th>Guests</th>
+              <th>Room</th>
+              <th>Total ($)</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="year"></span> GrandVista Hotel • All rights reserved.</div>
+  </footer>
+
+  <script>
+    // --- Data ---
+    const ROOMS = [
+      { id:'std', name:'Standard Room', capacity:2, price:120, img:'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop', features:['City view','Queen bed','Wi‑Fi'] },
+      { id:'dlx', name:'Deluxe Room', capacity:3, price:180, img:'https://images.unsplash.com/photo-1551776235-dde6d4829808?q=80&w=1200&auto=format&fit=crop', features:['Balcony','King bed','Smart TV'] },
+      { id:'fam', name:'Family Suite', capacity:4, price:250, img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop', features:['2 Bedrooms','Kitchenette','Sofa bed'] },
+      { id:'exe', name:'Executive Suite', capacity:2, price:320, img:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200&auto=format&fit=crop', features:['Workspace','Lounge access','Coffee machine'] },
+      { id:'prs', name:'Presidential Suite', capacity:4, price:420, img:'https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&auto=format&fit=crop', features:['Panoramic view','Butler','Jacuzzi'] },
+      { id:'eco', name:'Economy Room', capacity:1, price:80, img:'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop', features:['Compact','Single bed','Great value'] },
+    ];
+
+    const PASSCODE = 'admin123';
+
+    // --- Helpers ---
+    const $ = (sel,root=document) => root.querySelector(sel);
+    const $$ = (sel,root=document) => [...root.querySelectorAll(sel)];
+    const money = n => Number(n).toFixed(2);
+
+    // Render Rooms
+    function renderRooms(list=ROOMS){
+      const grid = $('#roomsGrid');
+      grid.innerHTML = '';
+      list.forEach(r=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${r.img}" alt="${r.name}">
+          <div class="pad">
+            <div class="chip">Sleeps ${r.capacity}</div>
+            <div class="chip">$${r.price}/night</div>
+            <h3 style="margin:8px 0">${r.name}</h3>
+            <div class="muted">${r.features.join(' • ')}</div>
+            <div style="display:flex;gap:10px;margin-top:12px">
+              <button class="btn" onclick="selectRoom('${r.id}')">Select</button>
+              <button class="btn" onclick="scrollToBook()">Book</button>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function scrollToBook(){ location.hash = '#book'; }
+
+    // Filters
+    function applyFilters(){
+      const q = $('#q').value.toLowerCase().trim();
+      const cap = $('#cap').value;
+      const price = $('#price').value;
+      let list = ROOMS.filter(r =>
+        (!q || (r.name+" "+r.features.join(' ')).toLowerCase().includes(q)) &&
+        (!cap || (cap==='3' ? r.capacity>=3 : r.capacity==Number(cap))) &&
+        (!price || r.price <= Number(price))
+      );
+      renderRooms(list);
+    }
+    function resetFilters(){
+      $('#q').value=''; $('#cap').value=''; $('#price').value=''; renderRooms();
+    }
+
+    // Booking form population
+    function populateRoomOptions(){
+      const sel = $('#roomType');
+      sel.innerHTML = ROOMS.map(r=>`<option value="${r.id}">${r.name} — $${r.price}/night</option>`).join('');
+    }
+    function selectRoom(id){
+      $('#roomType').value = id; scrollToBook(); estimatePrice();
+    }
+
+    function dateDiffNights(a,b){
+      const d1 = new Date(a), d2 = new Date(b);
+      const ms = d2 - d1; const nights = Math.ceil(ms / (1000*60*60*24));
+      return isFinite(nights) && nights>0 ? nights : 0;
+    }
+
+    function estimatePrice(){
+      const f = $('#bookingForm');
+      const room = ROOMS.find(r=> r.id === f.roomType.value);
+      const nights = dateDiffNights(f.checkin.value, f.checkout.value);
+      const guests = Number(f.guests.value||1);
+      if(!room || nights===0){ $('#estimate').style.display='none'; return; }
+      // Add-on: extra guest fee beyond capacity $20/guest/night
+      const extraGuests = Math.max(0, guests - room.capacity);
+      const total = room.price*nights + extraGuests*20*nights;
+      $('#estimate').style.display='block';
+      $('#estimate').innerHTML = `<div class="card" style="padding:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>Estimate:</strong> ${room.name} for ${nights} night(s)</div>
+          <div class="price">$${money(total)}</div>
+        </div>
+        <div class="muted">Base $${money(room.price)} × ${nights} night(s) ${extraGuests>0?`• Extra guest fee $${money(extraGuests*20)} × ${nights}`:''}</div>
+      </div>`;
+      return {nights,total,room,extraGuests};
+    }
+
+    function submitBooking(e){
+      e.preventDefault();
+      const f = e.target;
+      const est = estimatePrice();
+      if(!est){ alert('Please select valid dates and room.'); return; }
+      const booking = {
+        id: 'BKG-' + Math.random().toString(36).slice(2,8).toUpperCase(),
+        firstName: f.firstName.value.trim(),
+        lastName: f.lastName.value.trim(),
+        email: f.email.value.trim(),
+        phone: f.phone.value.trim(),
+        checkin: f.checkin.value,
+        checkout: f.checkout.value,
+        nights: est.nights,
+        guests: Number(f.guests.value),
+        roomId: f.roomType.value,
+        roomName: est.room.name,
+        total: Number(est.total),
+        notes: f.notes.value.trim(),
+        status: 'Pending'
+      };
+      const all = getBookings();
+      all.push(booking);
+      localStorage.setItem('hotel_bookings', JSON.stringify(all));
+      alert('Booking confirmed! Reference: '+booking.id);
+      f.reset();
+      $('#estimate').style.display='none';
+      loadBookings();
+    }
+
+    function getBookings(){
+      try { return JSON.parse(localStorage.getItem('hotel_bookings')) || []; }
+      catch{ return []; }
+    }
+
+    // Admin
+    let adminUnlocked = false;
+    function unlockAdmin(){
+      const pass = $('#adminPass').value.trim();
+      if(pass === PASSCODE){ adminUnlocked = true; loadBookings(); alert('Admin unlocked'); }
+      else { alert('Incorrect passcode'); }
+    }
+
+    function loadBookings(){
+      const body = $('#bookingsBody');
+      body.innerHTML = '';
+      const list = getBookings();
+      list.forEach((b,idx)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${idx+1}</td>
+          <td>${b.firstName} ${b.lastName}</td>
+          <td>${b.email}</td>
+          <td>${b.phone||'-'}</td>
+          <td>${b.checkin}</td>
+          <td>${b.checkout}</td>
+          <td>${b.nights}</td>
+          <td>${b.guests}</td>
+          <td>${b.roomName}</td>
+          <td>${money(b.total)}</td>
+          <td><span class="badge">${b.status}</span></td>
+          <td>
+            <button class="btn" onclick="markStatus(${idx}, 'Confirmed')">Confirm</button>
+            <button class="btn" onclick="markStatus(${idx}, 'Cancelled')">Cancel</button>
+            <button class="btn" onclick="removeBooking(${idx})" style="background:linear-gradient(135deg,var(--danger),#b91c1c)">Delete</button>
+          </td>`;
+        body.appendChild(tr);
+      });
+      // hide actions if not unlocked
+      $$('#bookingsBody button').forEach(btn=>{ btn.style.display = adminUnlocked? 'inline-flex':'none'; });
+    }
+
+    function markStatus(index, status){
+      if(!adminUnlocked) return alert('Unlock admin first.');
+      const list = getBookings();
+      if(!list[index]) return;
+      list[index].status = status;
+      localStorage.setItem('hotel_bookings', JSON.stringify(list));
+      loadBookings();
+    }
+
+    function removeBooking(index){
+      if(!adminUnlocked) return alert('Unlock admin first.');
+      const list = getBookings();
+      list.splice(index,1);
+      localStorage.setItem('hotel_bookings', JSON.stringify(list));
+      loadBookings();
+    }
+
+    function clearAll(){
+      if(!adminUnlocked) return alert('Unlock admin first.');
+      if(confirm('Delete ALL bookings?')){ localStorage.removeItem('hotel_bookings'); loadBookings(); }
+    }
+
+    function exportCSV(){
+      const list = getBookings();
+      if(!list.length){ alert('No bookings to export.'); return; }
+      const headers = ['Ref','First Name','Last Name','Email','Phone','Check-in','Check-out','Nights','Guests','Room','Total','Status','Notes'];
+      const rows = list.map(b=>[
+        b.id,b.firstName,b.lastName,b.email,b.phone,b.checkin,b.checkout,b.nights,b.guests,b.roomName,b.total,b.status, (b.notes||'').replaceAll('\n',' ')
+      ]);
+      const csv = [headers, ...rows].map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'bookings.csv'; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', ()=>{
+      renderRooms();
+      populateRoomOptions();
+      loadBookings();
+      $('#year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

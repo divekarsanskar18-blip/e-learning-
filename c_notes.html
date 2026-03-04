@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Programming in C Notes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #000000, #660000);
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: orange;
+    }
+    h2 {
+      color: orange;
+    }
+    p, ul {
+      line-height: 1.6;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: #222;
+      color: orange;
+      border: none;
+      padding: 12px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .tab-btn:hover {
+      background: orange;
+      color: black;
+    }
+
+    .tab-btn.active {
+      background: orange;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.6s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;} 
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <h1>PROGRAMMING IN C</h1>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openUnit(1)">Unit 1</button>
+    <button class="tab-btn" onclick="openUnit(2)">Unit 2</button>
+    <button class="tab-btn" onclick="openUnit(3)">Unit 3</button>
+    <button class="tab-btn" onclick="openUnit(4)">Unit 4</button>
+    <button class="tab-btn" onclick="openUnit(5)">Unit 5</button>
+  </div>
+
+  <!-- Notes -->
+  <div id="unit1" class="tab-content active">
+    <h2>Unit - I: Basics of C Programming</h2>
+    <ul>
+      <li>Introduction to C language – History, Features, Applications</li>
+      <li>Structure of C program, Compilation and Execution process</li>
+      <li>Character set, Tokens, Keywords, Identifiers</li>
+      <li>Constants, Variables, Data types</li>
+      <li>Input and Output functions (printf, scanf)</li>
+      <li>Operators – Arithmetic, Relational, Logical, Assignment, Increment/Decrement</li>
+    </ul>
+  </div>
+
+  <div id="unit2" class="tab-content">
+    <h2>Unit - II: Control Structures</h2>
+    <ul>
+      <li>Decision making statements: if, if-else, nested if</li>
+      <li>Switch-case statement</li>
+      <li>Looping statements: while, do-while, for</li>
+      <li>Break, continue and goto statements</li>
+      <li>Examples and programs based on control structures</li>
+    </ul>
+  </div>
+
+  <div id="unit3" class="tab-content">
+    <h2>Unit - III: Arrays & Strings</h2>
+    <ul>
+      <li>Definition and declaration of arrays</li>
+      <li>One-dimensional and multi-dimensional arrays</li>
+      <li>String handling in C</li>
+      <li>String functions: strlen, strcpy, strcmp, strcat</li>
+      <li>Applications of arrays and strings</li>
+    </ul>
+  </div>
+
+  <div id="unit4" class="tab-content">
+    <h2>Unit - IV: Functions & Storage Classes</h2>
+    <ul>
+      <li>Need of functions, advantages</li>
+      <li>Types of functions: library and user-defined</li>
+      <li>Function declaration, definition and calling</li>
+      <li>Categories of functions (with/without arguments, with/without return value)</li>
+      <li>Recursion in C</li>
+      <li>Storage classes: auto, static, extern, register</li>
+    </ul>
+  </div>
+
+  <div id="unit5" class="tab-content">
+    <h2>Unit - V: Pointers, Structures & File Handling</h2>
+    <ul>
+      <li>Pointers – Definition, declaration, advantages</li>
+      <li>Pointers and arrays, pointers and functions</li>
+      <li>Structures and unions – definition, declaration, accessing members</li>
+      <li>Nested structures and arrays of structures</li>
+      <li>Introduction to file handling in C – fopen, fclose, fprintf, fscanf</li>
+    </ul>
+  </div>
+
+  <script>
+    function openUnit(unitNumber) {
+      // Hide all contents
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(c => c.classList.remove('active'));
+
+      // Remove active from all buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      // Show selected content
+      document.getElementById("unit" + unitNumber).classList.add('active');
+      buttons[unitNumber - 1].classList.add('active');
+    }
+  </script>
+</body>
+</html>

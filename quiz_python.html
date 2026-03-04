@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Quiz - E-learning</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #000000, #002b4b);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: black;
+    }
+    .navbar .logo {
+      color: orange;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .quiz-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 255, 100, 0.6);
+    }
+    .quiz-container h2 {
+      text-align: center;
+      color: orange;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    .btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: orange;
+      border: none;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: darkorange;
+    }
+    .result {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 20px;
+      color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">E-learning</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="quizzes.html">Quizzes</a></li>
+      <li><a href="certificate.html">Student Certificate</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+
+  <div class="quiz-container">
+    <h2>Python Basics Quiz</h2>
+    <form id="quizForm">
+      
+      <!-- Sample Questions -->
+     
+      <div class="question">
+  <p>1. What does HTML stand for?</p>
+  <div class="options">
+    <label><input type="radio" name="q1" value="A"> Hyperlinks and Text Markup Language</label>
+    <label><input type="radio" name="q1" value="B"> Home Tool Markup Language</label>
+    <label><input type="radio" name="q1" value="C"> Hyper Text Markup Language</label>
+    <label><input type="radio" name="q1" value="D"> Hyper Tool Markup Language</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Who is the father of HTML?</p>
+  <div class="options">
+    <label><input type="radio" name="q2" value="A"> Rasmus Lerdorf</label>
+    <label><input type="radio" name="q2" value="B"> Tim Berners-Lee</label>
+    <label><input type="radio" name="q2" value="C"> Brendan Eich</label>
+    <label><input type="radio" name="q2" value="D"> James Gosling</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Which tag is used to create a hyperlink in HTML?</p>
+  <div class="options">
+    <label><input type="radio" name="q3" value="A"> &lt;link&gt;</label>
+    <label><input type="radio" name="q3" value="B"> &lt;a&gt;</label>
+    <label><input type="radio" name="q3" value="C"> &lt;href&gt;</label>
+    <label><input type="radio" name="q3" value="D"> &lt;hyper&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Which HTML tag is used to display the largest heading?</p>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A"> &lt;h6&gt;</label>
+    <label><input type="radio" name="q4" value="B"> &lt;h1&gt;</label>
+    <label><input type="radio" name="q4" value="C"> &lt;head&gt;</label>
+    <label><input type="radio" name="q4" value="D"> &lt;heading&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>5. Which tag is used to insert an image in HTML?</p>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A"> &lt;img&gt;</label>
+    <label><input type="radio" name="q5" value="B"> &lt;picture&gt;</label>
+    <label><input type="radio" name="q5" value="C"> &lt;src&gt;</label>
+    <label><input type="radio" name="q5" value="D"> &lt;image&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>6. Which attribute specifies the URL of the image in HTML?</p>
+  <div class="options">
+    <label><input type="radio" name="q6" value="A"> link</label>
+    <label><input type="radio" name="q6" value="B"> src</label>
+    <label><input type="radio" name="q6" value="C"> href</label>
+    <label><input type="radio" name="q6" value="D"> url</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>7. Which tag is used to insert a line break?</p>
+  <div class="options">
+    <label><input type="radio" name="q7" value="A"> &lt;br&gt;</label>
+    <label><input type="radio" name="q7" value="B"> &lt;break&gt;</label>
+    <label><input type="radio" name="q7" value="C"> &lt;lb&gt;</label>
+    <label><input type="radio" name="q7" value="D"> &lt;hr&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>8. Which HTML element is used to define a table row?</p>
+  <div class="options">
+    <label><input type="radio" name="q8" value="A"> &lt;td&gt;</label>
+    <label><input type="radio" name="q8" value="B"> &lt;tr&gt;</label>
+    <label><input type="radio" name="q8" value="C"> &lt;th&gt;</label>
+    <label><input type="radio" name="q8" value="D"> &lt;row&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>9. Which HTML tag is used to define an unordered list?</p>
+  <div class="options">
+    <label><input type="radio" name="q9" value="A"> &lt;ol&gt;</label>
+    <label><input type="radio" name="q9" value="B"> &lt;ul&gt;</label>
+    <label><input type="radio" name="q9" value="C"> &lt;list&gt;</label>
+    <label><input type="radio" name="q9" value="D"> &lt;dl&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>10. Which tag is used to add a background color in HTML5?</p>
+  <div class="options">
+    <label><input type="radio" name="q10" value="A"> bgcolor</label>
+    <label><input type="radio" name="q10" value="B"> style</label>
+    <label><input type="radio" name="q10" value="C"> color</label>
+    <label><input type="radio" name="q10" value="D"> background</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>11. Which tag is used to insert a horizontal rule?</p>
+  <div class="options">
+    <label><input type="radio" name="q11" value="A"> &lt;hr&gt;</label>
+    <label><input type="radio" name="q11" value="B"> &lt;line&gt;</label>
+    <label><input type="radio" name="q11" value="C"> &lt;break&gt;</label>
+    <label><input type="radio" name="q11" value="D"> &lt;hl&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>12. Which attribute is used to open a link in a new tab?</p>
+  <div class="options">
+    <label><input type="radio" name="q12" value="A"> href="_new"</label>
+    <label><input type="radio" name="q12" value="B"> target="_blank"</label>
+    <label><input type="radio" name="q12" value="C"> link="_tab"</label>
+    <label><input type="radio" name="q12" value="D"> open="tab"</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>13. Which tag defines the metadata in HTML?</p>
+  <div class="options">
+    <label><input type="radio" name="q13" value="A"> &lt;meta&gt;</label>
+    <label><input type="radio" name="q13" value="B"> &lt;head&gt;</label>
+    <label><input type="radio" name="q13" value="C"> &lt;title&gt;</label>
+    <label><input type="radio" name="q13" value="D"> &lt;style&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>14. Which tag is used to define a dropdown list?</p>
+  <div class="options">
+    <label><input type="radio" name="q14" value="A"> &lt;input&gt;</label>
+    <label><input type="radio" name="q14" value="B"> &lt;list&gt;</label>
+    <label><input type="radio" name="q14" value="C"> &lt;select&gt;</label>
+    <label><input type="radio" name="q14" value="D"> &lt;dropdown&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>15. Which HTML tag is used to display preformatted text?</p>
+  <div class="options">
+    <label><input type="radio" name="q15" value="A"> &lt;pre&gt;</label>
+    <label><input type="radio" name="q15" value="B"> &lt;code&gt;</label>
+    <label><input type="radio" name="q15" value="C"> &lt;format&gt;</label>
+    <label><input type="radio" name="q15" value="D"> &lt;tt&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>16. Which tag is used to define inline styles?</p>
+  <div class="options">
+    <label><input type="radio" name="q16" value="A"> class</label>
+    <label><input type="radio" name="q16" value="B"> id</label>
+    <label><input type="radio" name="q16" value="C"> style</label>
+    <label><input type="radio" name="q16" value="D"> css</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>17. Which tag is used to embed a video in HTML5?</p>
+  <div class="options">
+    <label><input type="radio" name="q17" value="A"> &lt;media&gt;</label>
+    <label><input type="radio" name="q17" value="B"> &lt;video&gt;</label>
+    <label><input type="radio" name="q17" value="C"> &lt;movie&gt;</label>
+    <label><input type="radio" name="q17" value="D"> &lt;vid&gt;</label>
+  </div>
+</div>
+
+<div class="question">
+  <p>18. Which tag is used to embed an audio file?</p>
+  <div class="options">
+    <label><input type="radio" name="q18" value="A"> &lt;sound&gt;</label>
+    <label><input type="radio" name="q18" value="B"> &lt;audio&gt;</label>
+    <label><input type="radio" name="q18" value="C"> &lt;music&gt;</label>
+    <label><input type="radio" name="q18" value="D"> &lt;mp3&gt;</label>
+  </div>
+</div>
+ <div class="question">
+        <p>19. Who developed Python Programming Language?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> Dennis Ritchie</label>
+          <label><input type="radio" name="q1" value="B"> Guido van Rossum</label>
+          <label><input type="radio" name="q1" value="C"> James Gosling</label>
+          <label><input type="radio" name="q1" value="D"> Bjarne Stroustrup</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>20. Which type of programming does Python support?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="A"> object-oriented</label>
+          <label><input type="radio" name="q2" value="B"> structured</label>
+          <label><input type="radio" name="q2" value="C"> functional</label>
+          <label><input type="radio" name="q2" value="D"> all of the above</label>
+        </div>
+      </div>
+
+      <button type="button" class="btn" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      let score = 0;
+      const answers = {
+        q1: "B", q2: "D", q3: "C", q4: "A", q5: "B",
+        q6: "C", q7: "A", q8: "B", q9: "D", q10: "C",
+        q11: "A", q12: "B", q13: "C", q14: "D", q15: "B",
+        q16: "A", q17: "C", q18: "D", q19: "B", q20: "A"
+      };
+      for (let q in answers) {
+        let selected = document.querySelector(`input[name=${q}]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+      document.getElementById("result").innerText = "Your Score: " + score + "/20";
+    }
+  </script>
+</body>
+</html>

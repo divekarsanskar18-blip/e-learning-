@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectures - E-Learning Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(17, 17, 24, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 40px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ff7200;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ff7200;
+            background: rgba(255, 114, 0, 0.1);
+        }
+
+        .logout-btn {
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            color: #ff6b6b;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 59, 48, 0.2);
+        }
+
+        .main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: #ff7200;
+        }
+
+        .breadcrumb .sep {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .breadcrumb .current {
+            color: #ff7200;
+            font-weight: 500;
+        }
+
+        /* Course header */
+        .course-header {
+            margin-bottom: 35px;
+        }
+
+        .course-header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Progress overview */
+        .progress-overview {
+            background: linear-gradient(135deg, rgba(255, 114, 0, 0.1), rgba(255, 114, 0, 0.02));
+            border: 1px solid rgba(255, 114, 0, 0.15);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .progress-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .progress-text strong {
+            font-size: 18px;
+            color: #ff7200;
+        }
+
+        .progress-text span {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .progress-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: conic-gradient(#ff7200 var(--pct, 0%), rgba(255, 255, 255, 0.1) 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .progress-circle-inner {
+            width: 54px;
+            height: 54px;
+            background: #0a0a0f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #ff7200;
+        }
+
+        /* Lecture list */
+        .lecture-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lecture-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .lecture-item:hover {
+            border-color: rgba(255, 114, 0, 0.3);
+            background: rgba(255, 114, 0, 0.05);
+            transform: translateX(4px);
+        }
+
+        .lecture-number {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            flex-shrink: 0;
+        }
+
+        .lecture-item.completed .lecture-number {
+            background: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+        }
+
+        .lecture-info {
+            flex: 1;
+        }
+
+        .lecture-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .lecture-info p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .lecture-status {
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .status-completed {
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .status-pending {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .lecture-play {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 114, 0, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .lecture-item:hover .lecture-play {
+            background: #ff7200;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        /* Loading */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 114, 0, 0.2);
+            border-top-color: #ff7200;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            transition: bottom 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .toast.show {
+            bottom: 30px;
+        }
+
+        .toast-success {
+            background: #1a3a1a;
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .main {
+                padding: 25px 15px;
+            }
+
+            .progress-overview {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .lecture-item {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="dashboard.html" class="nav-brand">📚 E-Learning</a>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="Quizzes.html">Quizzes</a>
+            <a href="ABOUT.html">About</a>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="main">
+        <div class="breadcrumb">
+            <a href="dashboard.html">Dashboard</a>
+            <span class="sep">›</span>
+            <span class="current" id="breadcrumbCourse">Course</span>
+        </div>
+
+        <div class="course-header">
+            <h1 id="courseTitle">Loading...</h1>
+            <div class="course-meta">
+                <span id="lectureCount">🎥 0 lectures</span>
+                <span id="completedCount">✅ 0 completed</span>
+            </div>
+        </div>
+
+        <div class="progress-overview" id="progressOverview">
+            <div class="progress-text">
+                <strong id="progressPct">0% Complete</strong>
+                <span>Keep going! You're doing great.</span>
+            </div>
+            <div class="progress-circle" id="progressCircle" style="--pct: 0%">
+                <div class="progress-circle-inner" id="progressCircleText">0%</div>
+            </div>
+        </div>
+
+        <div class="lecture-list" id="lectureList">
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Loading lectures...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="supabase-config.js"></script>
+    <script src="auth-guard.js"></script>
+    <script>
+        async function init() {
+            const user = await requireAuth();
+            if (!user) return;
+
+            const params = new URLSearchParams(window.location.search);
+            const courseId = params.get('course_id');
+
+            if (!courseId) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            await loadLectures(courseId, user.id);
+        }
+
+        async function loadLectures(courseId, userId) {
+            try {
+                // Get course
+                const { data: course, error: courseError } = await supabaseClient
+                    .from('courses')
+                    .select('*')
+                    .eq('id', courseId)
+                    .single();
+
+                if (courseError || !course) {
+                    window.location.href = 'dashboard.html';
+                    return;
+                }
+
+                document.getElementById('courseTitle').textContent = course.title;
+                document.getElementById('breadcrumbCourse').textContent = course.title;
+                document.title = `${course.title} - E-Learning`;
+
+                // Get lectures
+                const { data: lectures, error: lecturesError } = await supabaseClient
+                    .from('lectures')
+                    .select('*')
+                    .eq('course_id', courseId)
+                    .order('sort_order');
+
+                if (lecturesError) throw lecturesError;
+
+                // Get progress
+                const { data: progress } = await supabaseClient
+                    .from('lecture_progress')
+                    .select('*')
+                    .eq('user_id', userId)
+                    .eq('course_id', courseId);
+
+                const progressMap = {};
+                (progress || []).forEach(p => { progressMap[p.lecture_id] = p; });
+
+                const completedCount = Object.values(progressMap).filter(p => p.completed).length;
+                const totalCount = (lectures || []).length;
+                const pct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+
+                document.getElementById('lectureCount').textContent = `🎥 ${totalCount} lectures`;
+                document.getElementById('completedCount').textContent = `✅ ${completedCount} completed`;
+                document.getElementById('progressPct').textContent = `${pct}% Complete`;
+                document.getElementById('progressCircle').style.setProperty('--pct', pct + '%');
+                document.getElementById('progressCircleText').textContent = pct + '%';
+
+                const list = document.getElementById('lectureList');
+
+                if (!lectures || lectures.length === 0) {
+                    list.innerHTML = `
+            <div class="empty-state">
+              <div class="icon">📭</div>
+              <p>No lectures added yet for this course.<br>Check back later!</p>
+            </div>
+          `;
+                    return;
+                }
+
+                list.innerHTML = lectures.map((lecture, i) => {
+                    const prog = progressMap[lecture.id];
+                    const isCompleted = prog && prog.completed;
+                    const viewCount = prog ? prog.view_count : 0;
+
+                    return `
+            <a href="watch.html?lecture_id=${lecture.id}&course_id=${courseId}" 
+               class="lecture-item ${isCompleted ? 'completed' : ''}">
+              <div class="lecture-number">${isCompleted ? '✓' : (i + 1)}</div>
+              <div class="lecture-info">
+                <h3>${lecture.title}</h3>
+                <p>${lecture.description || 'Watch this lecture'}${viewCount > 0 ? ` · Watched ${viewCount}x` : ''}</p>
+              </div>
+              <span class="lecture-status ${isCompleted ? 'status-completed' : 'status-pending'}">
+                ${isCompleted ? 'Completed' : 'Not Started'}
+              </span>
+              <div class="lecture-play">▶</div>
+            </a>
+          `;
+                }).join('');
+
+            } catch (err) {
+                console.error('Error loading lectures:', err);
+                document.getElementById('lectureList').innerHTML =
+                    '<div class="loading-state"><p>Error loading lectures. Please try again.</p></div>';
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
