@@ -760,20 +760,22 @@
             try {
                 const certEl = document.getElementById('certificateEl');
 
-                // Store original transform and scroll position to bypass mobile CSS scaling bugs during render
-                const originalTransform = certEl.style.transform;
-                const originalMargin = certEl.style.marginBottom;
-                certEl.style.transform = 'scale(1)';
-                certEl.style.marginBottom = '0';
-
-                // html2canvas works best when the element is visible at the top
-                const originalScroll = window.scrollY;
-                window.scrollTo(0, 0);
+                // Create an isolated clone of the certificate off-screen to prevent CSS transform conflicts
+                const clone = certEl.cloneNode(true);
+                clone.style.position = 'absolute';
+                clone.style.top = '-9999px';
+                clone.style.left = '-9999px';
+                clone.style.transform = 'none'; // Ensure no scaling is applied
+                clone.style.width = '800px';
+                clone.style.height = '566px';
+                clone.style.margin = '0';
+                clone.style.boxShadow = 'none'; // Optional: remove shadow for cleaner PDF edge
+                document.body.appendChild(clone);
 
                 // Wait a tick for styles to apply before rendering
                 await new Promise(r => setTimeout(r, 100));
 
-                const canvas = await html2canvas(certEl, {
+                const canvas = await html2canvas(clone, {
                     scale: 2, // High resolution
                     useCORS: true,
                     backgroundColor: '#fffdf5',
@@ -782,10 +784,8 @@
                     height: 566
                 });
 
-                // Restore everything immediately
-                certEl.style.transform = originalTransform;
-                certEl.style.marginBottom = originalMargin;
-                window.scrollTo(0, originalScroll);
+                // Remove the clone immediately after rendering
+                document.body.removeChild(clone);
 
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF({
