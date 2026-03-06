@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - E-Learning Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(17, 17, 24, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 40px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ff7200;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff7200;
+            background: rgba(255, 114, 0, 0.1);
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-user-name {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .logout-btn {
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            color: #ff6b6b;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 59, 48, 0.2);
+        }
+
+        /* Main content */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Page header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ff7200, #ff9a44);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Section tabs */
+        .section-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .section-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .section-tab:hover {
+            background: rgba(255, 114, 0, 0.1);
+            border-color: rgba(255, 114, 0, 0.3);
+            color: #ff7200;
+        }
+
+        .section-tab.active {
+            background: linear-gradient(135deg, #ff7200, #ff9a44);
+            border-color: transparent;
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 114, 0, 0.3);
+        }
+
+        /* Notes sections */
+        .notes-section {
+            display: none;
+            animation: fadeSlideIn 0.5s ease;
+        }
+
+        .notes-section.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .section-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 114, 0, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .section-info h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .section-info p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        /* Notes grid */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 18px;
+        }
+
+        /* Note card */
+        .note-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff7200, #ff9a44);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .note-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 114, 0, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .note-card:hover::before {
+            opacity: 1;
+        }
+
+        .note-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+
+        .note-unit-badge {
+            font-size: 12px;
+            font-weight: 600;
+            color: #ff7200;
+            background: rgba(255, 114, 0, 0.12);
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .note-card-emoji {
+            font-size: 28px;
+        }
+
+        .note-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .note-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .note-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topic-count {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-btn {
+            font-size: 13px;
+            color: #ff7200;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.2s;
+        }
+
+        .note-card:hover .read-btn {
+            gap: 8px;
+        }
+
+        /* Direct notes card (full page notes that link out) */
+        .note-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* Coming soon badge */
+        .coming-soon {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .coming-soon .note-unit-badge {
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            transition: bottom 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .toast.show {
+            bottom: 30px;
+        }
+
+        .toast-success {
+            background: #1a3a1a;
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .main {
+                padding: 25px 15px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-tabs {
+                gap: 6px;
+            }
+
+            .section-tab {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="dashboard.html" class="nav-brand">📚 E-Learning</a>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="Quizzes.html">Quizzes</a>
+            <a href="ABOUT.html">About</a>
+            <a href="notes.html" class="active">Notes</a>
+            <a href="certificate.html">Certificate</a>
+        </div>
+        <div class="nav-user">
+            <span class="nav-user-name" id="navUserName"></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>📖 Course Notes</h1>
+            <p>Access well-organized study notes for all your courses. Select a subject to explore.</p>
+        </div>
+
+        <!-- Section Tabs -->
+        <div class="section-tabs">
+            <button class="section-tab active" onclick="showSection('all')">All Courses</button>
+            <button class="section-tab" onclick="showSection('programming')">Programming</button>
+            <button class="section-tab" onclick="showSection('web')">Web Development</button>
+            <button class="section-tab" onclick="showSection('database')">Database</button>
+            <button class="section-tab" onclick="showSection('dsa')">Data Structures</button>
+        </div>
+
+        <!-- All Courses Section -->
+        <div id="section-all" class="notes-section active">
+
+            <!-- C Programming -->
+            <div class="section-header">
+                <div class="section-icon">💻</div>
+                <div class="section-info">
+                    <h2>Programming Languages</h2>
+                    <p>Core programming language notes with unit-wise content</p>
+                </div>
+            </div>
+            <div class="notes-grid">
+                <a href="c_notes.html" class="note-card">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🔵</span>
+                        <span class="note-unit-badge">5 UNITS</span>
+                    </div>
+                    <h3>Programming in C</h3>
+                    <p>Basics, control structures, arrays & strings, functions, pointers, structures & file handling.
+                    </p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 6+ Topics</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+
+                <a href="cpp_notes.html" class="note-card">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">⚙️</span>
+                        <span class="note-unit-badge">5 UNITS</span>
+                    </div>
+                    <h3>Object Oriented Programming (C++)</h3>
+                    <p>OOP principles, functions & constructors, inheritance, polymorphism & file operations.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 8+ Topics</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+
+                <a href="java_notes.html" class="note-card">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">☕</span>
+                        <span class="note-unit-badge">5 UNITS</span>
+                    </div>
+                    <h3>Programming in Java</h3>
+                    <p>Java features & environment, classes & objects, tokens, data types, operators & control flow.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 10+ Topics</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+
+                <a href="quiz_python.html" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🐍</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>Python Programming</h3>
+                    <p>Variables, data types, control flow, functions, OOP, file handling and libraries.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Web & Database section -->
+            <div class="section-header" style="margin-top: 50px;">
+                <div class="section-icon">🌐</div>
+                <div class="section-info">
+                    <h2>Web Development & Database</h2>
+                    <p>HTML, CSS, JavaScript and database management notes</p>
+                </div>
+            </div>
+            <div class="notes-grid">
+                <a href="#" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🌐</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>HTML & Web Technologies</h3>
+                    <p>HTML structure, elements, forms, tables, multimedia, semantic tags and responsive design.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+
+                <a href="#" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🗄️</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>Database Management Systems</h3>
+                    <p>ER diagrams, relational model, SQL queries, normalization and transaction management.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- DSA section -->
+            <div class="section-header" style="margin-top: 50px;">
+                <div class="section-icon">🧮</div>
+                <div class="section-info">
+                    <h2>Data Structures & Algorithms</h2>
+                    <p>Core data structures and algorithmic problem solving</p>
+                </div>
+            </div>
+            <div class="notes-grid">
+                <a href="#" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🔗</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>Data Structures Using C</h3>
+                    <p>Arrays, linked lists, stacks, queues, trees, graphs, sorting and searching algorithms.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Programming Section -->
+        <div id="section-programming" class="notes-section">
+            <div class="section-header">
+                <div class="section-icon">💻</div>
+                <div class="section-info">
+                    <h2>Programming Languages</h2>
+                    <p>Core programming language notes</p>
+                </div>
+            </div>
+            <div class="notes-grid">
+                <a href="c_notes.html" class="note-card">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🔵</span>
+                        <span class="note-unit-badge">5 UNITS</span>
+                    </div>
+                    <h3>Programming in C</h3>
+                    <p>Basics, control structures, arrays & strings, functions, pointers, structures & file handling.
+                    </p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 6+ Topics</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+
+                <a href="cpp_notes.html" class="note-card">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">⚙️</span>
+                        <span class="note-unit-badge">5 UNITS</span>
+                    </div>
+                    <h3>Object Oriented Programming (C++)</h3>
+                    <p>OOP principles, functions & constructors, inheritance, polymorphism & file operations.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 8+ Topics</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+
+                <a href="java_notes.html" class="note-card">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">☕</span>
+                        <span class="note-unit-badge">5 UNITS</span>
+                    </div>
+                    <h3>Programming in Java</h3>
+                    <p>Java features & environment, classes & objects, tokens, data types, operators & control flow.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 10+ Topics</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+
+                <a href="#" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🐍</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>Python Programming</h3>
+                    <p>Variables, data types, control flow, functions, OOP, file handling and libraries.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Web Section -->
+        <div id="section-web" class="notes-section">
+            <div class="section-header">
+                <div class="section-icon">🌐</div>
+                <div class="section-info">
+                    <h2>Web Development</h2>
+                    <p>HTML, CSS, JavaScript notes</p>
+                </div>
+            </div>
+            <div class="notes-grid">
+                <a href="#" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🌐</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>HTML & Web Technologies</h3>
+                    <p>HTML structure, elements, forms, tables, multimedia, semantic tags and responsive design.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Database Section -->
+        <div id="section-database" class="notes-section">
+            <div class="section-header">
+                <div class="section-icon">🗄️</div>
+                <div class="section-info">
+                    <h2>Database Management</h2>
+                    <p>DBMS concepts and SQL notes</p>
+                </div>
+            </div>
+            <div class="notes-grid">
+                <a href="#" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🗄️</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>Database Management Systems</h3>
+                    <p>ER diagrams, relational model, SQL queries, normalization and transaction management.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- DSA Section -->
+        <div id="section-dsa" class="notes-section">
+            <div class="section-header">
+                <div class="section-icon">🧮</div>
+                <div class="section-info">
+                    <h2>Data Structures & Algorithms</h2>
+                    <p>DSA concepts and problem solving notes</p>
+                </div>
+            </div>
+            <div class="notes-grid">
+                <a href="#" class="note-card coming-soon">
+                    <div class="note-card-header">
+                        <span class="note-card-emoji">🔗</span>
+                        <span class="note-unit-badge">COMING SOON</span>
+                    </div>
+                    <h3>Data Structures Using C</h3>
+                    <p>Arrays, linked lists, stacks, queues, trees, graphs, sorting and searching algorithms.</p>
+                    <div class="note-card-footer">
+                        <span class="topic-count">📄 Coming soon</span>
+                        <span class="read-btn">Read Notes →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="supabase-config.js"></script>
+    <script src="auth-guard.js"></script>
+    <script>
+        // Auth init
+        (async () => {
+            const user = await requireAuth();
+            if (!user) return;
+
+            const profile = await getUserProfile();
+            if (profile) {
+                document.getElementById('navUserName').textContent = profile.full_name;
+            }
+        })();
+
+        // Section tabs
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.notes-section').forEach(s => s.classList.remove('active'));
+
+            // Remove active from all tabs
+            document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+
+            // Show selected section
+            const target = document.getElementById('section-' + section);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Set active tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

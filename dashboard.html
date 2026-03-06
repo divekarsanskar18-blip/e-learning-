@@ -357,6 +357,208 @@
                 font-size: 28px;
             }
         }
+
+        /* Profile Modal */
+        .profile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .profile-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .profile-modal {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            max-width: 90vw;
+            height: 100%;
+            background: #111118;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 201;
+            overflow-y: auto;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-modal.show {
+            right: 0;
+        }
+
+        .profile-modal-header {
+            padding: 30px 28px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-modal-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .profile-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .profile-close-btn:hover {
+            background: rgba(255, 59, 48, 0.15);
+            border-color: rgba(255, 59, 48, 0.3);
+            color: #ff6b6b;
+        }
+
+        .profile-avatar-section {
+            padding: 30px 28px;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff7200, #ff9a44);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            font-weight: 800;
+            color: #fff;
+            margin: 0 auto 16px;
+            box-shadow: 0 8px 25px rgba(255, 114, 0, 0.3);
+        }
+
+        .profile-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .profile-role-badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 20px;
+            background: rgba(74, 222, 128, 0.12);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            text-transform: capitalize;
+            margin-top: 6px;
+        }
+
+        .profile-info-section {
+            padding: 0 28px 24px;
+        }
+
+        .profile-info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .profile-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .profile-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .profile-info-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-info-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            text-align: right;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Profile stats */
+        .profile-stats-section {
+            padding: 0 28px 28px;
+        }
+
+        .profile-stats-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .profile-stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 18px 16px;
+            text-align: center;
+        }
+
+        .profile-stat-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ff7200;
+            margin-bottom: 4px;
+        }
+
+        .profile-stat-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .nav-user-name {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-user-name:hover {
+            color: #ff7200;
+        }
     </style>
 </head>
 
@@ -368,12 +570,69 @@
             <a href="dashboard.html" class="active">Dashboard</a>
             <a href="Quizzes.html">Quizzes</a>
             <a href="ABOUT.html">About</a>
+            <a href="notes.html">Notes</a>
+            <a href="certificate.html">Certificate</a>
         </div>
         <div class="nav-user">
-            <span class="nav-user-name" id="navUserName"></span>
+            <span class="nav-user-name" id="navUserName" onclick="toggleProfile()"></span>
             <button class="logout-btn" onclick="logout()">Logout</button>
         </div>
     </nav>
+
+    <!-- Profile Modal -->
+    <div class="profile-overlay" id="profileOverlay" onclick="toggleProfile()"></div>
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-modal-header">
+            <h2>My Profile</h2>
+            <button class="profile-close-btn" onclick="toggleProfile()">✕</button>
+        </div>
+        <div class="profile-avatar-section">
+            <div class="profile-avatar" id="profileAvatar">S</div>
+            <div class="profile-name" id="profileName">Student</div>
+            <span class="profile-role-badge" id="profileRole">student</span>
+        </div>
+        <div class="profile-info-section">
+            <div class="profile-info-card">
+                <div class="profile-info-row">
+                    <span class="profile-info-label">📧 Email</span>
+                    <span class="profile-info-value" id="profileEmail">—</span>
+                </div>
+                <div class="profile-info-row">
+                    <span class="profile-info-label">👤 Full Name</span>
+                    <span class="profile-info-value" id="profileFullName">—</span>
+                </div>
+                <div class="profile-info-row">
+                    <span class="profile-info-label">🎭 Role</span>
+                    <span class="profile-info-value" id="profileRoleText">—</span>
+                </div>
+                <div class="profile-info-row">
+                    <span class="profile-info-label">📅 Joined</span>
+                    <span class="profile-info-value" id="profileJoined">—</span>
+                </div>
+            </div>
+        </div>
+        <div class="profile-stats-section">
+            <div class="profile-stats-title">Learning Stats</div>
+            <div class="profile-stats-grid">
+                <div class="profile-stat-card">
+                    <div class="profile-stat-value" id="profileCourses">0</div>
+                    <div class="profile-stat-label">Courses</div>
+                </div>
+                <div class="profile-stat-card">
+                    <div class="profile-stat-value" id="profileLectures">0</div>
+                    <div class="profile-stat-label">Lectures Done</div>
+                </div>
+                <div class="profile-stat-card">
+                    <div class="profile-stat-value" id="profileProgress">0%</div>
+                    <div class="profile-stat-label">Progress</div>
+                </div>
+                <div class="profile-stat-card">
+                    <div class="profile-stat-value" id="profileViews">0</div>
+                    <div class="profile-stat-label">Total Views</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="main">
@@ -434,6 +693,7 @@
             if (profile) {
                 document.getElementById('userName').textContent = profile.full_name.split(' ')[0];
                 document.getElementById('navUserName').textContent = profile.full_name;
+                populateProfile(profile);
             }
 
             await loadDashboard(user.id);
@@ -519,6 +779,69 @@
         }
 
         init();
+
+        // Profile modal
+        function toggleProfile() {
+            document.getElementById('profileOverlay').classList.toggle('show');
+            document.getElementById('profileModal').classList.toggle('show');
+        }
+
+        function populateProfile(profile) {
+            // Avatar initial
+            const initials = profile.full_name
+                .split(' ')
+                .map(n => n[0])
+                .join('')
+                .toUpperCase()
+                .slice(0, 2);
+            document.getElementById('profileAvatar').textContent = initials;
+
+            // Basic info
+            document.getElementById('profileName').textContent = profile.full_name;
+            document.getElementById('profileRole').textContent = profile.role;
+            document.getElementById('profileEmail').textContent = profile.email;
+            document.getElementById('profileFullName').textContent = profile.full_name;
+            document.getElementById('profileRoleText').textContent =
+                profile.role.charAt(0).toUpperCase() + profile.role.slice(1);
+            document.getElementById('profileJoined').textContent =
+                new Date(profile.created_at).toLocaleDateString('en-IN', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                });
+
+            // Role badge color for admin
+            if (profile.role === 'admin') {
+                const badge = document.getElementById('profileRole');
+                badge.style.background = 'rgba(255, 114, 0, 0.12)';
+                badge.style.color = '#ff7200';
+                badge.style.borderColor = 'rgba(255, 114, 0, 0.2)';
+            }
+
+            // Fetch learning stats
+            loadProfileStats(profile.id);
+        }
+
+        async function loadProfileStats(userId) {
+            try {
+                const { data: courses } = await supabaseClient.from('courses').select('id');
+                const { data: lectures } = await supabaseClient.from('lectures').select('id');
+                const { data: progress } = await supabaseClient
+                    .from('lecture_progress')
+                    .select('*')
+                    .eq('user_id', userId);
+
+                const totalLectures = (lectures || []).length;
+                const completed = (progress || []).filter(p => p.completed).length;
+                const totalViews = (progress || []).reduce((sum, p) => sum + (p.view_count || 0), 0);
+                const pct = totalLectures > 0 ? Math.round((completed / totalLectures) * 100) : 0;
+
+                document.getElementById('profileCourses').textContent = (courses || []).length;
+                document.getElementById('profileLectures').textContent = completed;
+                document.getElementById('profileProgress').textContent = pct + '%';
+                document.getElementById('profileViews').textContent = totalViews;
+            } catch (err) {
+                console.error('Profile stats error:', err);
+            }
+        }
     </script>
 </body>
 
