@@ -760,12 +760,32 @@
             try {
                 const certEl = document.getElementById('certificateEl');
 
+                // Store original transform and scroll position to bypass mobile CSS scaling bugs during render
+                const originalTransform = certEl.style.transform;
+                const originalMargin = certEl.style.marginBottom;
+                certEl.style.transform = 'scale(1)';
+                certEl.style.marginBottom = '0';
+
+                // html2canvas works best when the element is visible at the top
+                const originalScroll = window.scrollY;
+                window.scrollTo(0, 0);
+
+                // Wait a tick for styles to apply before rendering
+                await new Promise(r => setTimeout(r, 100));
+
                 const canvas = await html2canvas(certEl, {
-                    scale: 2,
+                    scale: 2, // High resolution
                     useCORS: true,
                     backgroundColor: '#fffdf5',
-                    logging: false
+                    logging: false,
+                    width: 800,
+                    height: 566
                 });
+
+                // Restore everything immediately
+                certEl.style.transform = originalTransform;
+                certEl.style.marginBottom = originalMargin;
+                window.scrollTo(0, originalScroll);
 
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF({
@@ -774,11 +794,11 @@
                     format: [canvas.width, canvas.height]
                 });
 
-                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.width, canvas.height);
+                pdf.addImage(canvas.toDataURL('image/png', 1.0), 'PNG', 0, 0, canvas.width, canvas.height);
                 const fileName = `Certificate_${name.replace(/\s+/g, '_')}_${course.replace(/\s+/g, '_')}.pdf`;
                 pdf.save(fileName);
 
-                showToast('Certificate downloaded successfully! 🎉');
+                showToast('Certificate downloaded successfully! 🎉', 'success');
             } catch (err) {
                 console.error('PDF Error:', err);
                 showToast('Error generating PDF. Please try again.', 'error');
