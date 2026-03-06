@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
       margin: 0;
       padding: 0;
     }
+
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -19,21 +21,25 @@
       padding: 15px 30px;
       background: black;
     }
+
     .navbar .logo {
       color: orange;
       font-size: 24px;
       font-weight: bold;
     }
+
     .navbar ul {
       list-style: none;
       display: flex;
       gap: 20px;
     }
+
     .navbar ul li a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
+
     .quiz-container {
       max-width: 900px;
       margin: 40px auto;
@@ -42,22 +48,27 @@
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0, 140, 255, 0.6);
     }
+
     .quiz-container h2 {
       text-align: center;
       color: orange;
     }
+
     .question {
       margin: 20px 0;
     }
+
     .question p {
       font-size: 18px;
       font-weight: bold;
     }
+
     .options label {
       display: block;
       margin: 8px 0;
       cursor: pointer;
     }
+
     .btn {
       display: block;
       margin: 20px auto;
@@ -71,9 +82,11 @@
       border-radius: 6px;
       transition: 0.3s;
     }
+
     .btn:hover {
       background: darkorange;
     }
+
     .result {
       text-align: center;
       font-size: 20px;
@@ -82,6 +95,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="navbar">
     <div class="logo">E-learning</div>
@@ -96,7 +110,7 @@
   <div class="quiz-container">
     <h2>DBMS Basics Quiz</h2>
     <form id="quizForm">
-      
+
       <div class="question">
         <p>1. DBMS stands for?</p>
         <div class="options">
@@ -198,107 +212,107 @@
         </div>
       </div>
       <div class="question">
-  <p>11. Which of the following is a valid primary key property?</p>
-  <div class="options">
-    <label><input type="radio" name="q1" value="A"> Must be unique and not null</label>
-    <label><input type="radio" name="q1" value="B"> Can have duplicates</label>
-    <label><input type="radio" name="q1" value="C"> Can be null</label>
-    <label><input type="radio" name="q1" value="D"> None of these</label>
-  </div>
-</div>
+        <p>11. Which of the following is a valid primary key property?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> Must be unique and not null</label>
+          <label><input type="radio" name="q1" value="B"> Can have duplicates</label>
+          <label><input type="radio" name="q1" value="C"> Can be null</label>
+          <label><input type="radio" name="q1" value="D"> None of these</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>12. Which SQL command is used to remove a table from the database?</p>
-  <div class="options">
-    <label><input type="radio" name="q2" value="A"> REMOVE</label>
-    <label><input type="radio" name="q2" value="B"> DROP</label>
-    <label><input type="radio" name="q2" value="C"> DELETE</label>
-    <label><input type="radio" name="q2" value="D"> CLEAR</label>
-  </div>
-</div>
+      <div class="question">
+        <p>12. Which SQL command is used to remove a table from the database?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="A"> REMOVE</label>
+          <label><input type="radio" name="q2" value="B"> DROP</label>
+          <label><input type="radio" name="q2" value="C"> DELETE</label>
+          <label><input type="radio" name="q2" value="D"> CLEAR</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>13. Which of the following is not a type of SQL command?</p>
-  <div class="options">
-    <label><input type="radio" name="q3" value="A"> DDL</label>
-    <label><input type="radio" name="q3" value="B"> DML</label>
-    <label><input type="radio" name="q3" value="C"> DCL</label>
-    <label><input type="radio" name="q3" value="D"> HTML</label>
-  </div>
-</div>
+      <div class="question">
+        <p>13. Which of the following is not a type of SQL command?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="A"> DDL</label>
+          <label><input type="radio" name="q3" value="B"> DML</label>
+          <label><input type="radio" name="q3" value="C"> DCL</label>
+          <label><input type="radio" name="q3" value="D"> HTML</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>14. Which SQL keyword is used to sort the result-set?</p>
-  <div class="options">
-    <label><input type="radio" name="q4" value="A"> SORT</label>
-    <label><input type="radio" name="q4" value="B"> ORDER BY</label>
-    <label><input type="radio" name="q4" value="C"> GROUP BY</label>
-    <label><input type="radio" name="q4" value="D"> ARRANGE</label>
-  </div>
-</div>
+      <div class="question">
+        <p>14. Which SQL keyword is used to sort the result-set?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="A"> SORT</label>
+          <label><input type="radio" name="q4" value="B"> ORDER BY</label>
+          <label><input type="radio" name="q4" value="C"> GROUP BY</label>
+          <label><input type="radio" name="q4" value="D"> ARRANGE</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>15. Which SQL command is used to change the structure of a table?</p>
-  <div class="options">
-    <label><input type="radio" name="q5" value="A"> MODIFY</label>
-    <label><input type="radio" name="q5" value="B"> ALTER</label>
-    <label><input type="radio" name="q5" value="C"> UPDATE</label>
-    <label><input type="radio" name="q5" value="D"> CHANGE</label>
-  </div>
-</div>
+      <div class="question">
+        <p>15. Which SQL command is used to change the structure of a table?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="A"> MODIFY</label>
+          <label><input type="radio" name="q5" value="B"> ALTER</label>
+          <label><input type="radio" name="q5" value="C"> UPDATE</label>
+          <label><input type="radio" name="q5" value="D"> CHANGE</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>16. Which of the following is a constraint in SQL?</p>
-  <div class="options">
-    <label><input type="radio" name="q6" value="A"> UNIQUE</label>
-    <label><input type="radio" name="q6" value="B"> NOT NULL</label>
-    <label><input type="radio" name="q6" value="C"> CHECK</label>
-    <label><input type="radio" name="q6" value="D"> All of these</label>
-  </div>
-</div>
+      <div class="question">
+        <p>16. Which of the following is a constraint in SQL?</p>
+        <div class="options">
+          <label><input type="radio" name="q6" value="A"> UNIQUE</label>
+          <label><input type="radio" name="q6" value="B"> NOT NULL</label>
+          <label><input type="radio" name="q6" value="C"> CHECK</label>
+          <label><input type="radio" name="q6" value="D"> All of these</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>17. Which normal form removes partial dependency?</p>
-  <div class="options">
-    <label><input type="radio" name="q7" value="A"> 1NF</label>
-    <label><input type="radio" name="q7" value="B"> 2NF</label>
-    <label><input type="radio" name="q7" value="C"> 3NF</label>
-    <label><input type="radio" name="q7" value="D"> BCNF</label>
-  </div>
-</div>
+      <div class="question">
+        <p>17. Which normal form removes partial dependency?</p>
+        <div class="options">
+          <label><input type="radio" name="q7" value="A"> 1NF</label>
+          <label><input type="radio" name="q7" value="B"> 2NF</label>
+          <label><input type="radio" name="q7" value="C"> 3NF</label>
+          <label><input type="radio" name="q7" value="D"> BCNF</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>18. Which SQL clause is used to filter records?</p>
-  <div class="options">
-    <label><input type="radio" name="q8" value="A"> HAVING</label>
-    <label><input type="radio" name="q8" value="B"> WHERE</label>
-    <label><input type="radio" name="q8" value="C"> GROUP BY</label>
-    <label><input type="radio" name="q8" value="D"> FILTER</label>
-  </div>
-</div>
+      <div class="question">
+        <p>18. Which SQL clause is used to filter records?</p>
+        <div class="options">
+          <label><input type="radio" name="q8" value="A"> HAVING</label>
+          <label><input type="radio" name="q8" value="B"> WHERE</label>
+          <label><input type="radio" name="q8" value="C"> GROUP BY</label>
+          <label><input type="radio" name="q8" value="D"> FILTER</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>19. Which of the following is a non-relational database?</p>
-  <div class="options">
-    <label><input type="radio" name="q9" value="A"> MySQL</label>
-    <label><input type="radio" name="q9" value="B"> Oracle</label>
-    <label><input type="radio" name="q9" value="C"> MongoDB</label>
-    <label><input type="radio" name="q9" value="D"> PostgreSQL</label>
-  </div>
-</div>
+      <div class="question">
+        <p>19. Which of the following is a non-relational database?</p>
+        <div class="options">
+          <label><input type="radio" name="q9" value="A"> MySQL</label>
+          <label><input type="radio" name="q9" value="B"> Oracle</label>
+          <label><input type="radio" name="q9" value="C"> MongoDB</label>
+          <label><input type="radio" name="q9" value="D"> PostgreSQL</label>
+        </div>
+      </div>
 
-<div class="question">
-  <p>20. Which SQL function gives number of rows?</p>
-  <div class="options">
-    <label><input type="radio" name="q10" value="A"> SUM()</label>
-    <label><input type="radio" name="q10" value="B"> COUNT()</label>
-    <label><input type="radio" name="q10" value="C"> MAX()</label>
-    <label><input type="radio" name="q10" value="D"> AVG()</label>
-  </div>
-</div>
+      <div class="question">
+        <p>20. Which SQL function gives number of rows?</p>
+        <div class="options">
+          <label><input type="radio" name="q10" value="A"> SUM()</label>
+          <label><input type="radio" name="q10" value="B"> COUNT()</label>
+          <label><input type="radio" name="q10" value="C"> MAX()</label>
+          <label><input type="radio" name="q10" value="D"> AVG()</label>
+        </div>
+      </div>
 
 
-     
+
       <button type="button" class="btn" onclick="submitQuiz()">Submit Quiz</button>
     </form>
     <div class="result" id="result"></div>
@@ -321,5 +335,7 @@
       document.getElementById("result").innerText = "Your Score: " + score + "/20";
     }
   </script>
+  <script src="chatbot.js"></script>
 </body>
+
 </html>
