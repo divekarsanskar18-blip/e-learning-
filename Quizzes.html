@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,18 +12,21 @@
       background: linear-gradient(to right, #002b4b, #3b0000);
       color: white;
     }
+
     .header {
       padding: 20px;
       font-size: 28px;
       font-weight: bold;
       color: orange;
     }
+
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       padding: 20px;
     }
+
     .card {
       background: #111;
       padding: 30px;
@@ -31,18 +35,22 @@
       transition: transform 0.3s ease, background 0.3s ease;
       cursor: pointer;
     }
+
     .card:hover {
       transform: translateY(-10px);
       background: #222;
     }
+
     .card h2 {
       color: orange;
       margin-bottom: 10px;
     }
+
     .card p {
       font-size: 14px;
       color: #ddd;
     }
+
     .card a {
       display: inline-block;
       margin-top: 15px;
@@ -54,11 +62,13 @@
       border-radius: 6px;
       transition: background 0.3s ease;
     }
+
     .card a:hover {
       background: #ff6600;
     }
   </style>
 </head>
+
 <body>
 
   <div class="header">E-learning - Quizzes</div>
@@ -101,5 +111,7 @@
     </div>
   </div>
 
+  <script src="mobile-nav.js"></script>
 </body>
+
 </html>

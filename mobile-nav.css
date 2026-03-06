@@ -1,0 +1,107 @@
+/* Mobile Navigation Styles */
+.mobile-menu-btn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .navbar,
+    header {
+        position: relative;
+    }
+
+    .mobile-menu-btn {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+        margin-left: 15px;
+    }
+
+    .mobile-menu-btn span {
+        width: 100%;
+        height: 3px;
+        background: #ff7200;
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+        transform-origin: 1px;
+    }
+
+    .mobile-menu-btn.open span:nth-child(1) {
+        transform: rotate(45deg);
+    }
+
+    .mobile-menu-btn.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-btn.open span:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+
+    /* Override existing display: none on nav-links */
+    .nav-links,
+    .navbar ul,
+    header nav {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(17, 17, 24, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 20px;
+        gap: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        transform: translateY(-150%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        z-index: 99;
+    }
+
+    /* Style for the old quiz pages */
+    .navbar ul {
+        background: rgba(0, 0, 0, 0.95);
+        margin: 0;
+    }
+
+    /* Style for ABOUT.html */
+    header nav {
+        background: rgba(0, 0, 0, 0.95);
+    }
+
+    .nav-links.open,
+    .navbar ul.open,
+    header nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links a,
+    .navbar ul li a,
+    header nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        font-size: 16px;
+        margin: 0 !important;
+        color: white !important;
+    }
+
+    .nav-links a:hover,
+    .navbar ul li a:hover,
+    header nav a:hover {
+        color: #ff7200 !important;
+        background: rgba(255, 114, 0, 0.1);
+    }
+}
