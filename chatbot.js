@@ -28,108 +28,101 @@ const chatbotHTML = `
 
 // Inject HTML and CSS when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-    // Inject CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'chatbot.css';
-    document.head.appendChild(link);
+  // Inject CSS
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'chatbot.css';
+  document.head.appendChild(link);
 
-    // Inject HTML
-    const chatbotWrapper = document.createElement('div');
-    chatbotWrapper.innerHTML = chatbotHTML;
-    document.body.appendChild(chatbotWrapper);
+  // Inject HTML
+  const chatbotWrapper = document.createElement('div');
+  chatbotWrapper.innerHTML = chatbotHTML;
+  document.body.appendChild(chatbotWrapper);
 
-    // Select DOM elements
-    const chatbotToggler = document.querySelector('.chatbot-toggler');
-    const chatbotClose = document.querySelector('.chatbot-close');
-    const chatbotContainer = document.querySelector('.chatbot-container');
-    const chatInput = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
-    const chatBox = document.getElementById('chatbotBox');
+  // Select DOM elements
+  const chatbotToggler = document.querySelector('.chatbot-toggler');
+  const chatbotClose = document.querySelector('.chatbot-close');
+  const chatbotContainer = document.querySelector('.chatbot-container');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const chatBox = document.getElementById('chatbotBox');
 
-    // Toggle Chatbot
-    chatbotToggler.addEventListener('click', () => {
-        chatbotContainer.classList.add('show');
-        chatbotToggler.style.display = 'none';
-    });
+  // Toggle Chatbot
+  chatbotToggler.addEventListener('click', () => {
+    chatbotContainer.classList.add('show');
+    chatbotToggler.style.display = 'none';
+  });
 
-    chatbotClose.addEventListener('click', () => {
-        chatbotContainer.classList.remove('show');
-        chatbotToggler.style.display = 'flex';
-    });
+  chatbotClose.addEventListener('click', () => {
+    chatbotContainer.classList.remove('show');
+    chatbotToggler.style.display = 'flex';
+  });
 
-    // Auto size textarea
-    chatInput.addEventListener('input', () => {
-        chatInput.style.height = '24px';
-        chatInput.style.height = `${chatInput.scrollHeight}px`;
-        sendBtn.disabled = !chatInput.value.trim();
-    });
+  // Auto size textarea
+  chatInput.addEventListener('input', () => {
+    chatInput.style.height = '24px';
+    chatInput.style.height = `${chatInput.scrollHeight}px`;
+    sendBtn.disabled = !chatInput.value.trim();
+  });
 
-    // Simulated AI Logic
-    const getBotResponse = (userText) => {
-        const text = userText.toLowerCase();
+  // Real AI Logic via Free Pollinations.ai Text API
+  const getBotResponse = async (userText) => {
+    try {
+      // Give the AI some context about who it is
+      const systemPrompt = "You are a friendly and concise AI assistant for an E-Learning platform. The platform offers courses in C, C++, Java, Python, Web Development, DSA, and DBMS. It also features Quizzes, Notes, and Certificates. Answer the following query concisely and helpfully. Query: ";
 
-        if (text.includes('hi') || text.includes('hello') || text.includes('hey')) {
-            return "Hello! How can I assist with your learning journey today?";
-        }
-        if (text.includes('course') || text.includes('learn')) {
-            return "We offer courses in C, C++, Java, Web Development, Python, DSA, and DBMS! Head over to the Dashboard to find them.";
-        }
-        if (text.includes('note')) {
-            return "You can find dedicated course notes in the 'Notes' section from the top navigation menu.";
-        }
-        if (text.includes('certificate')) {
-            return "After completing a course, you can generate your certificate from the 'Certificate' hub!";
-        }
-        if (text.includes('quiz') || text.includes('test')) {
-            return "Test your knowledge in the 'Quizzes' section. We have quizzes for all major courses.";
-        }
-        if (text.includes('login') || text.includes('sign up')) {
-            return "You can use the login page to access your account. If you don't have an account, click 'Sign up' at the bottom of the login form!";
-        }
+      const url = 'https://text.pollinations.ai/' + encodeURIComponent(systemPrompt + userText);
+      const response = await fetch(url);
 
-        return "I'm still learning! Right now I can help you find courses, notes, quizzes, and certificates. Let me know what you'd like to explore!";
-    };
-
-    const createChatLi = (message, className) => {
-        const chatLi = document.createElement("div");
-        chatLi.classList.add("chat-msg", className);
-        let chatContent = className === "outgoing" ? `<p></p>` : `<p></p>`;
-        chatLi.innerHTML = chatContent;
-        chatLi.querySelector("p").textContent = message;
-        return chatLi;
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.text();
+      return data;
+    } catch (error) {
+      console.error("AI Error:", error);
+      return "Sorry, I'm having a little trouble connecting to my brain right now! Please try again later.";
     }
+  };
 
-    const handleChat = () => {
-        const userMessage = chatInput.value.trim();
-        if (!userMessage) return;
+  const createChatLi = (message, className) => {
+    const chatLi = document.createElement("div");
+    chatLi.classList.add("chat-msg", className);
+    let chatContent = className === "outgoing" ? `<p></p>` : `<p></p>`;
+    chatLi.innerHTML = chatContent;
+    chatLi.querySelector("p").textContent = message;
+    return chatLi;
+  }
 
-        // Clear input
-        chatInput.value = "";
-        chatInput.style.height = '24px';
-        sendBtn.disabled = true;
+  const handleChat = async () => {
+    const userMessage = chatInput.value.trim();
+    if (!userMessage) return;
 
-        // Append User Message
-        chatBox.appendChild(createChatLi(userMessage, "outgoing"));
-        chatBox.scrollTo(0, chatBox.scrollHeight);
+    // Clear input
+    chatInput.value = "";
+    chatInput.style.height = '24px';
+    sendBtn.disabled = true;
 
-        // AI "Thinking" Delay
-        const incomingChatLi = createChatLi("...", "incoming");
-        chatBox.appendChild(incomingChatLi);
-        chatBox.scrollTo(0, chatBox.scrollHeight);
+    // Append User Message
+    chatBox.appendChild(createChatLi(userMessage, "outgoing"));
+    chatBox.scrollTo(0, chatBox.scrollHeight);
 
-        setTimeout(() => {
-            const responseText = getBotResponse(userMessage);
-            incomingChatLi.querySelector("p").textContent = responseText;
-            chatBox.scrollTo(0, chatBox.scrollHeight);
-        }, 600);
+    // AI "Thinking" Delay
+    const incomingChatLi = createChatLi("...", "incoming");
+    chatBox.appendChild(incomingChatLi);
+    chatBox.scrollTo(0, chatBox.scrollHeight);
+
+    // Fetch real AI response
+    const responseText = await getBotResponse(userMessage);
+
+    // Update DOM
+    incomingChatLi.querySelector("p").textContent = responseText;
+    chatBox.scrollTo(0, chatBox.scrollHeight);
+  }
+
+  sendBtn.addEventListener('click', handleChat);
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleChat();
     }
-
-    sendBtn.addEventListener('click', handleChat);
-    chatInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            handleChat();
-        }
-    });
+  });
 });
